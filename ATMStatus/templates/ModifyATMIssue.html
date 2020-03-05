@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% extends 'base.html' %}
+{% block content %}
+<form method="post" action="">
+    {% csrf_token %}
+
+    <table class="table table-borderless">
+            <thead class="thead-dark" align="center" style="size:16px;">
+            <th colspan="2" >
+                Modify ATM Issue Details
+
+            </th>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">S.N</th>
+
+                <td>{{atm_issue_update.s_n}}</td>
+
+            </tr>
+            <tr>
+                <th scope="row">Branch Name</th>
+                <td>{{atm_issue_update.branch_name}}</td>
+
+            </tr>
+            <tr>
+                <th scope="row">Problem</th>
+                <td>{{atm_issue_update.problem}}</td>
+
+            </tr>
+             <tr>
+                <th scope="row">Terminal ID</th>
+                <td>{{atm_issue_update.terminal_id}}</td>
+
+            </tr>
+            <tr>
+                <th scope="row">ATM Terminal Name</th>
+                <td>{{atm_issue_update.atm_terminal_name}}</td>
+
+            </tr>
+             <tr>
+                <th scope="row">ATM IP Address</th>
+                <td>{{atm_issue_update.atm_ip_address}}</td>
+
+            </tr>
+             <tr>
+                <th scope="row">Switch IP Address</th>
+                <td>{{atm_issue_update.switch_ip_address}}</td>
+
+            </tr>
+             <tr>
+                <th scope="row">Port Number</th>
+                <td>{{atm_issue_update.port_number}}</td>
+
+            </tr>
+             <tr>
+                <th scope="row">Remarks</th>
+                <td>{{atm_issue_update.remarks}}</td>
+
+            </tr>
+             <tr>
+
+                <td colspan="2" align="center"><button type="submit" class="btn btn-primary btn-lg btn-block">Modify</button></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </form>
+
+{% endblock %}
+</body>
+</html>

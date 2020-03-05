@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .sidebar{
+        height:200px;
+        width:100px;
+        background-color:grey;
+        float:left;
+        }
+
+        .size{
+        height:200px;
+        width:500px;
+        background-color:grey;
+        }
+    </style>
+</head>
+<body bgcolor="green">
+{% extends 'base.html' %}
+{% block content %}
+<h1> LIST OF ATMS</h1>
+
+<div class="container">
+
+<table class="table table-sm size">
+    <thead class="thead-dark">
+
+    <tr>
+        <th scope="col">S.N</th>
+        <th scope="col">PROBLEM</th>
+        <th scope="col">REMARKS</th>
+        <th scope="col">TERMINAL ID</th>
+        <th scope="col">ATM TERMINAL NAME</th>
+        <th scope="col">ATM IP ADDRESS</th>
+        <th scope="col">SWITCH IP ADDRESS</th>
+        <th scope="col">PORT NUMBER</th>
+    </tr>
+    </thead>
+    <tbody>
+
+{% for atm in atm_fields%}
+    <tr>
+
+        <td>{{atm.s_n}}</td>
+        <td>{{atm.problem}}</td>
+        <td>{{atm.remarks}}</td>
+          <td>{{atm.terminal_id}}</td>
+          <td>{{atm.atm_terminal_name}}</td>
+          <td>{{atm.atm_ip_address}}</td>
+          <td>{{atm.switch_ip_address}}</td>
+          <td>{{atm.port_number}}</td>
+            <td>
+                <a href="{% url 'modify_atm_issue' atm.id %}"><span class="glyphicon glyphicon-pencil">Edit</span></a>
+                <a href="{% url 'delete_atm_issue' atm.id %}">Delete</a>
+            </td>
+    </tr>
+{% endfor %}
+    </tbody>
+
+</table>
+ </div>
+
+{% endblock %}
+
+</body>
+</html>

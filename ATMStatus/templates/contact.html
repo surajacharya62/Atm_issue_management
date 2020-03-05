@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+        {% block content %}
+
+            {% if submitted %}
+                <h1>Success</h1>
+            {% else %}
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ my_form.as_p }}
+                <input type="submit" value="save">
+             {% endif %}
+            </form>
+        {% endblock content%}
+</body>
+</html>
