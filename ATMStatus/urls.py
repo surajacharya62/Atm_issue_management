@@ -13,7 +13,7 @@ urlpatterns = [
     path('contact/',views.contact, name="ATMStatus_contact"),
     path('viewatmissue/',views.view_atm_issue, name='view_atm_issue'),
     path('<int:pid>/',views.modify_atm_issue,name='modify_atm_issue'),
-    path('<int:pid>/',views.update_atm_issue, name='update_atm_issue'),
+    path('updateatm/',views.update_atm_issue, name='update_atm_issue'),
     path('deleteatmissue/<int:pid>',views.delete_atm_issue, name='delete_atm_issue')
 
 
