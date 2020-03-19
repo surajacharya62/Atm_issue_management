@@ -7,6 +7,8 @@
 <body>
 
 {% extends 'base.html' %}
+
+
 {% block content %}
 <form method="post" action="">
     {% csrf_token %}
@@ -47,12 +49,21 @@
             </tr>
              <tr>
                 <th scope="row">ATM IP Address</th>
-                <td>{{atm_issue_update.atm_ip_address}}</td>
+
+                <td>
+                    {{atm_issue_update.atm_ip_address}}
+                           <br/>{{atm_error_message}}
+                </td>
 
             </tr>
+
              <tr>
                 <th scope="row">Switch IP Address</th>
-                <td>{{atm_issue_update.switch_ip_address}}</td>
+
+                <td>
+                    {{atm_issue_update.switch_ip_address}}
+                    <br/>{{switch_error_message}}
+                </td>
 
             </tr>
              <tr>
@@ -62,7 +73,9 @@
             </tr>
              <tr>
                 <th scope="row">Remarks</th>
+
                 <td>{{atm_issue_update.remarks}}</td>
+
 
             </tr>
              <tr>

@@ -1,11 +1,38 @@
 from django.contrib import admin
 
-from . models import ViewATMStatus
+from . models import AtmDetails,AtmTerminalIdDetails,AtmIssueDetails
 
 # Register your models here.
 
-class ViewATMStatusAdmin(admin.ModelAdmin):
-    list_display = ('s_n','branch_name','problem','remarks','terminal_id','atm_terminal_name','atm_ip_address','switch_ip_address','port_number')
+
+class AtmTerminalDetailsAdmin(admin.ModelAdmin):
+    list_display = ('s_n','atm_terminal_id')
 
 
-admin.site.register(ViewATMStatus,ViewATMStatusAdmin)
+class AtmDetailsAdmin(admin.ModelAdmin):
+    list_display = ('s_n',
+                    'branch_name',
+                    'branch_code',
+                    'atm_location',
+                    'atm_terminal_id',
+                    'atm_address',
+                    'atm_ip_address',
+                    'switch_ip_address',
+                    'switch_port_number',
+                    'atm_installed_date')
+
+
+class AtmIssueDetailsAdmin(admin.ModelAdmin):
+    list_display = ('s_n',
+                    'branch_name',
+                    'branch_code',
+                    'atm_terminal_id',
+                    'problem',
+                    'remarks',
+                    'atm_issue_priority'
+                    )
+
+
+admin.site.register(AtmTerminalIdDetails,AtmTerminalDetailsAdmin)
+admin.site.register(AtmDetails,AtmDetailsAdmin)
+admin.site.register(AtmIssueDetails,AtmIssueDetailsAdmin)

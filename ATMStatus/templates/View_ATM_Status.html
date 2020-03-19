@@ -30,12 +30,12 @@
     <thead class="thead-dark">
 
     <tr>
+         <th scope="col">ID</th>
         <th scope="col">S.N</th>
         <th scope="col">PROBLEM</th>
         <th scope="col">REMARKS</th>
         <th scope="col">TERMINAL ID</th>
-        <th scope="col">ATM TERMINAL NAME</th>
-        <th scope="col">ATM IP ADDRESS</th>
+         <th scope="col">ATM IP ADDRESS</th>
         <th scope="col">SWITCH IP ADDRESS</th>
         <th scope="col">PORT NUMBER</th>
     </tr>
@@ -44,12 +44,11 @@
 
 {% for atm in atm_fields%}
     <tr>
-
+        <td>{{atm.id}}</td>
         <td>{{atm.s_n}}</td>
         <td>{{atm.problem}}</td>
         <td>{{atm.remarks}}</td>
           <td>{{atm.terminal_id}}</td>
-          <td>{{atm.atm_terminal_name}}</td>
           <td>{{atm.atm_ip_address}}</td>
           <td>{{atm.switch_ip_address}}</td>
           <td>{{atm.port_number}}</td>

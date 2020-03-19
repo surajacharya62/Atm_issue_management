@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'base.html' %}
+{% block content%}
+<form method="post" action="">
+        {% csrf_token %}
+
+        <table class="table table-borderless">
+            <thead class="thead-dark" align="center" style="size:16px;">
+            <th colspan="2" >
+                Add New Terminal ID Details
+
+            </th>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">S.N</th>
+                <td>{{add_terminalid.s_n}}</td>
+
+            </tr>
+              <tr>
+                <th scope="row">Terminal ID</th>
+                <td>{{add_terminalid.terminal_id}}</td>
+
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><button type="submit" class="btn btn-primary btn-lg btn-block">Save</button></td>
+
+            </tr>
+            </tbody>
+        </table>
+{% endblock%}
+</body>
+</html>

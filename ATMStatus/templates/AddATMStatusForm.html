@@ -15,7 +15,7 @@
 <body>
 
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+
 {% block content %}
 
 <div class="container">
@@ -23,7 +23,7 @@
     <h1>{{success}}</h1>
     <form method="post" action="">
         {% csrf_token %}
-        {{addform.s_n|as_crispy_field}}
+
         <table class="table table-borderless">
             <thead class="thead-dark" align="center" style="size:16px;">
             <th colspan="2" >
@@ -57,11 +57,7 @@
                 <td>{{addform.terminal_id}}</td>
 
             </tr>
-              <tr>
-                <th scope="row">ATM Terminal Name</th>
-                <td>{{addform.atm_terminal_name}}</td>
 
-            </tr>
              <tr>
                 <th scope="row">ATM IP Address</th>
                 <td>{{addform.atm_ip_address}}</td>
@@ -84,82 +80,82 @@
             </tr>
             </tbody>
         </table>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label class="col-form-label" >S.N.</label>
-                        <div class="">
-                            {{addform.s_n}}
-                        </div>
-        <!--               <input type="number" class="form-control" name="{{addform.s_n}}">-->
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label >Branch Name</label>
-                        <div class="">
-                            {{addform.branch_name}}
-                        </div>
+<!--                <div class="form-row">-->
+<!--                    <div class="form-group col-md-6">-->
+<!--                        <label class="col-form-label" >S.N.</label>-->
+<!--                        <div class="">-->
+<!--                            {{addform.s_n}}-->
+<!--                        </div>-->
+<!--        &lt;!&ndash;               <input type="number" class="form-control" name="{{addform.s_n}}">&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    <div class="form-group col-md-6">-->
+<!--                        <label >Branch Name</label>-->
+<!--                        <div class="">-->
+<!--                            {{addform.branch_name}}-->
+<!--                        </div>-->
 
 
-        <!--                <input type="text" class="form-control" name="inputBranchName" placeholder="Branch Name">-->
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label >Problem</label>
-                    <div class="">
-                        {{addform.problem}}
-                    </div>
+<!--        &lt;!&ndash;                <input type="text" class="form-control" name="inputBranchName" placeholder="Branch Name">&ndash;&gt;-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label >Problem</label>-->
+<!--                    <div class="">-->
+<!--                        {{addform.problem}}-->
+<!--                    </div>-->
 
-        <!--            <input type="text" class="form-control" id="inputProblem" placeholder="State the Problem">-->
-                </div>
-                <div class="form-group">
-                    <label for="inputRemarks">Remarks</label>
-                     <div class="">
-                            {{addform.remarks}}
-                        </div>
-        <!--            <input type="text" class="form-control" id="inputRemarks" placeholder="">-->
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="inputAtmTerminalName">ATM Terminal Name</label>
-                         <div class="">
-                            {{addform.atm_terminal_name}}
-                        </div>
-        <!--                <input type="text" class="form-control" id="inputAtmTerminalName">-->
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label>Terminal ID</label>
-                         <div class="">
-                            {{addform.terminal_id}}
-                        </div>
-        <!--                <select id="inputTerminalId" class="form-control">-->
-        <!--                    <option selected>Choose...</option>-->
-        <!--                    <option>JBBL123</option>-->
-        <!--                </select>-->
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label>ATM IP Address</label>
-                         <div class="">
-                            {{addform.atm_ip_address}}
-                        </div>
-        <!--                <input type="text" class="form-control" id="inputAtmIpAddress">-->
-                    </div>
-                     <div class="form-group col-md-4">
-                        <label>Switch IP Address</label>
-                          <div class="">
-                            {{addform.switch_ip_address}}
-                        </div>
-        <!--                <select id="inputSwitchIpAddress" class="form-control">-->
-        <!--                    <option selected>Choose...</option>-->
-        <!--                    <option>19282</option>-->
-        <!--                </select>-->
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label>ATM Port Number</label>
-                         <div class="">
-                            {{addform.port_number}}
-                        </div>
-        <!--                <input type="text" class="form-control" id="inputAtmPortNumber">-->
-                    </div>
-                </div>
+<!--        &lt;!&ndash;            <input type="text" class="form-control" id="inputProblem" placeholder="State the Problem">&ndash;&gt;-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="inputRemarks">Remarks</label>-->
+<!--                     <div class="">-->
+<!--                            {{addform.remarks}}-->
+<!--                        </div>-->
+<!--        &lt;!&ndash;            <input type="text" class="form-control" id="inputRemarks" placeholder="">&ndash;&gt;-->
+<!--                </div>-->
+<!--                <div class="form-row">-->
+<!--                    <div class="form-group col-md-4">-->
+<!--                        <label for="inputAtmTerminalName">ATM Terminal Name</label>-->
+<!--                         <div class="">-->
+<!--                            {{addform.atm_terminal_name}}-->
+<!--                        </div>-->
+<!--        &lt;!&ndash;                <input type="text" class="form-control" id="inputAtmTerminalName">&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    <div class="form-group col-md-4">-->
+<!--                        <label>Terminal ID</label>-->
+<!--                         <div class="">-->
+<!--                            {{addform.terminal_id}}-->
+<!--                        </div>-->
+<!--        &lt;!&ndash;                <select id="inputTerminalId" class="form-control">&ndash;&gt;-->
+<!--        &lt;!&ndash;                    <option selected>Choose...</option>&ndash;&gt;-->
+<!--        &lt;!&ndash;                    <option>JBBL123</option>&ndash;&gt;-->
+<!--        &lt;!&ndash;                </select>&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    <div class="form-group col-md-4">-->
+<!--                        <label>ATM IP Address</label>-->
+<!--                         <div class="">-->
+<!--                            {{addform.atm_ip_address}}-->
+<!--                        </div>-->
+<!--        &lt;!&ndash;                <input type="text" class="form-control" id="inputAtmIpAddress">&ndash;&gt;-->
+<!--                    </div>-->
+<!--                     <div class="form-group col-md-4">-->
+<!--                        <label>Switch IP Address</label>-->
+<!--                          <div class="">-->
+<!--                            {{addform.switch_ip_address}}-->
+<!--                        </div>-->
+<!--        &lt;!&ndash;                <select id="inputSwitchIpAddress" class="form-control">&ndash;&gt;-->
+<!--        &lt;!&ndash;                    <option selected>Choose...</option>&ndash;&gt;-->
+<!--        &lt;!&ndash;                    <option>19282</option>&ndash;&gt;-->
+<!--        &lt;!&ndash;                </select>&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    <div class="form-group col-md-4">-->
+<!--                        <label>ATM Port Number</label>-->
+<!--                         <div class="">-->
+<!--                            {{addform.port_number}}-->
+<!--                        </div>-->
+<!--        &lt;!&ndash;                <input type="text" class="form-control" id="inputAtmPortNumber">&ndash;&gt;-->
+<!--                    </div>-->
+<!--                </div>-->
 
 
     </form>

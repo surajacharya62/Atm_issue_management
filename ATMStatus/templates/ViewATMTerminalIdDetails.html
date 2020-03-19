@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>View All ATM Terminal Id</title>
+</head>
+<body>
+{% extends 'base.html'%}
+{% block content %}
+    <table class="table table-bordered">
+        <thead class="thead-dark" align="center" style="size:16px">
+            <th colspan="2" >ATM Terminal Details </th>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="col">S.N</th>
+                <th scope="col">ATM Terminal ID</th>
+            </tr>
+
+        {% for all_atm in all_atm_terminal_id %}
+        <tr>
+            <td>{{all_atm.s_n}}</td>
+            <td>{{all_atm.atm_terminal_id}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+</body>
+</html>

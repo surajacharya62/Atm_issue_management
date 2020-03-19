@@ -9,9 +9,10 @@ from django.conf.urls.static import static
 urlpatterns = [
 
     path('',views.index),
-    url('Addatmstatus/',views.add_form_status),
+    # path('addatmstatus/',views.add_form_status),
+    path('addterminalid/',views.add_terminal_id_details, name="add_terminal_id"),
+    path('viewallatmterminalid/',views.view_atm_terminal_id_details, name="view_atm_terminal_id"),
     path('contact/',views.contact, name="ATMStatus_contact"),
-    path('viewatmissue/',views.view_atm_issue, name='view_atm_issue'),
     path('<int:pid>/',views.modify_atm_issue,name='modify_atm_issue'),
     path('updateatm/',views.update_atm_issue, name='update_atm_issue'),
     path('deleteatmissue/<int:pid>',views.delete_atm_issue, name='delete_atm_issue')
