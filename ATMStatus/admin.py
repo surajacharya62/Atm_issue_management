@@ -24,7 +24,6 @@ class AtmDetailsAdmin(admin.ModelAdmin):
 
 class AtmIssueDetailsAdmin(admin.ModelAdmin):
     list_display = ('s_n',
-                    'branch_name',
                     'branch_code',
                     'atm_terminal_id',
                     'problem',

@@ -94,9 +94,9 @@ def view_atm_terminal_id_details(request):
     all_atm_terminal_id = AtmTerminalIdDetails.objects.all()
     return render(request,'ViewATMTerminalIdDetails.html',{'all_atm_terminal_id':all_atm_terminal_id})
 
-'''
-    Modifying and updating the issues.
-'''
+
+##->   Modifying and updating the issues.
+
 def modify_atm_issue(request, pid):
     addform = AtmIssueDetails.objects.get(pk=pid)
     addform1 = AddATMStatusForm(instance=addform)
