@@ -1,33 +1,39 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>View All ATM Terminal Id</title>
-</head>
-<body>
 {% extends 'base.html'%}
 {% block content %}
-    <table class="table table-bordered">
-        <thead class="thead-dark" align="center" style="size:16px">
-            <th colspan="2" >ATM Terminal Details </th>
+<div class="content-section">
+
+    <table class="table table-bordered text-center">
+        <thead class="thead-dark">
+            <th colspan="3">ATM Terminal Details </th>
         </thead>
         <tbody>
             <tr>
                 <th scope="col">S.N</th>
-                <th scope="col">ATM Terminal ID</th>
+                <th scope="col" colspan="2">ATM Terminal ID</th>
+
             </tr>
 
-        {% for all_atm in all_atm_terminal_id %}
-        <tr>
-            <td>{{all_atm.s_n}}</td>
-            <td>{{all_atm.atm_terminal_id}}</td>
-        </tr>
-        {% endfor %}
+            {% for all_atm in all_atm_terminal_id %}
+            <tr>
+                <td>{{all_atm.s_n}}</td>
+                <td class="editable" data-id="{{all_atm.id}}" data-type="{{all_atm.atm_terminal_id}}">
+                    {{all_atm.atm_terminal_id}}
+                </td>
+                <td class="text-dark">
+                    <a href="{% url 'ATMStatus_modify_terminal_id' all_atm.id %}"><button type="button"
+                            class="btn btn-info"><span class="glyphicon glyphicon-pencil"
+                                aria-hidden="true">Edit</span></button></a>
+                    <a href="{% url 'ATMStatus_delete_terminal_id' all_atm.id %}"><button type="button"
+                            class="btn btn-info"><span class="glyphicon glyphicon-pencil"
+                                aria-hidden="true">Delete</span></button></a>
+
+
+                </td>
+            </tr>
+
+            {% endfor %}
         </tbody>
     </table>
+</div>
+
 {% endblock %}
-</body>
-</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>View All ATM Terminal Id</title>
+</head>
+
+<body>
+    {% extends 'base.html'%}
+    {% block content %}
+    <table class="table table-bordered text-center">
+        <thead class="thead-dark">
+            <th colspan="11">ATM Details </th>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="col">S.N</th>
+                <th scope="col">Branch Name</th>
+                <th scope="col">Branch Code</th>
+                <th scope="col">ATM Terminal Id</th>
+                <th scope="col">ATM Location</th>
+                <th scope="col">ATM Address</th>
+                <th scope="col">ATM Ip Address</th>
+                <th scope="col">Swith Ip Address</th>
+                <th scope="col">Switch Port Number</th>
+                <th scope="col" colspan="2">ATM Installed Date</th>
+
+            </tr>
+
+            {% for all_atm in all_atm_details %}
+            <tr>
+                <td>{{all_atm.s_n}}</td>
+                <td class="">
+                    {{all_atm.branch_name}}
+                </td>
+                <td class="">
+                    {{all_atm.branch_code}}
+                </td>
+                <td class="">
+                    {{all_atm.atm_terminal_id}}
+                </td>
+                <td class="">
+                    {{all_atm.atm_location}}
+                </td>
+                <td class="">
+                    {{all_atm.atm_address}}
+                </td>
+                <td class="">
+                    {{all_atm.atm_ip_address}}
+                </td>
+                <td class="">
+                    {{all_atm.switch_ip_address}}
+                </td>
+                <td class="">
+                    {{all_atm.switch_port_number}}
+                </td>
+                <td class="">
+                    {{all_atm.atm_installed_date}}
+                </td>
+                <td class="text-dark">
+                    <a href="">Edit</a>
+                    <a href="">Delete</a>
+
+                </td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+</body>
+
+</html>

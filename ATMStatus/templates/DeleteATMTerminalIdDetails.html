@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
+<form method="POST" action="">
+    {% csrf_token %}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Are you sure want to delete {{delete_atm_id}} ATM
+            terminal
+            ID?
+        </legend>
+        <table class="table table-bordered text-center">
+            <thead class="thead-dark">
+                <th colspan="3">ATM Terminal Details </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="col">S.N</th>
+                    <th scope="col" colspan="2">ATM Terminal ID</th>
+
+                </tr>
+
+
+                <tr>
+                    <td>{{delete_atm_terminal_id.s_n}}</td>
+                    <td>
+                        {{delete_atm_terminal_id.atm_terminal_id}}
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+        </table>
+    </fieldset>
+    <div class="form-group">
+        <button class="btn btn-outline-info" type="submit">Delete</button>
+
+    </div>
+
+</form>
+{% endblock %}
