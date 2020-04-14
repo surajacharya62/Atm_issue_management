@@ -6,6 +6,7 @@ from .AddTerminalIdDetailsForm import AddTerminalIdForm
 from django.urls import reverse
 from django.contrib import messages
 import re
+from django.views.generic import DeleteView
 
 
 def index(request):
@@ -73,27 +74,23 @@ def modify_atm_terminal_id(request, pid):
 
 
 def delete_atm_terminal_id(request, pid):
-    delete_terminal_id = AtmTerminalIdDetails.objects.all(id=pid)
+    delete_terminal_id = AtmTerminalIdDetails.objects.get(id=pid)
     deleted_atm_id = delete_terminal_id.atm_terminal_id
-    delete_atm_terminal_id = ''
 
-    if request.method == "GET":
-        delete_atm_terminal_id = AddTerminalIdForm(instance=delete_terminal_id)
+    if request.method == "POST":
         print(delete_atm_terminal_id)
+        print('delete2')
+        messages.success(
+            request, f"ATM ID '{deleted_atm_id}' has been successfully deleted!")
+        delete_terminal_id.delete()
+        return redirect(view_atm_terminal_id_details)
 
-    else:
-        delete_atm_terminal_id = AddTerminalIdForm(
-            request.POST, instance=delete_terminal_id)
-        print('delete1')
-        print(delete_atm_terminal_id)
-        if delete_atm_terminal_id.is_valid():
-            print('delete2')
-            messages.success(
-                request, f"ATM ID '{deleted_atm_id}' has been successfully deleted!")
-            delete_atm_terminal_id.delete()
-            return redirect(view_atm_terminal_id_details)
+    return render(request, 'DeleteATMTerminalIdDetails.html', {'delete_atm_id': deleted_atm_id})
 
-    return render(request, 'DeleteATMTerminalIdDetails.html', {'delete_atm_terminal_id': delete_atm_terminal_id, 'delete_atm_id': deleted_atm_id})
+
+class ATMTerminalIdDetailsDeleteView(DeleteView):
+    model = AtmTerminalIdDetails
+    success_url = '/ATMStatus/viewallatmterminalid'
 
 
 # -> Viewing atm details.

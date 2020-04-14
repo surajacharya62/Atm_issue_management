@@ -1,5 +1,5 @@
 from django.db import models
-from .validators import validate_switch_ip
+
 from django.core.validators import RegexValidator, validate_slug
 
 
@@ -42,4 +42,3 @@ class AtmIssueDetails(models.Model):
     remarks = models.CharField(max_length=2083, null=True)
     atm_issue_priority = models.CharField(
         choices=CHOICES, default='Medium', max_length=6)
-
