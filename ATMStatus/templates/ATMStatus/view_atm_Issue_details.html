@@ -16,20 +16,18 @@
                     <th scope="col">Branch Name</th>
                     <th scope="col">Branch Code</th>
                     <th scope="col">ATM Terminal Id</th>
-                    <th scope="col">ATM Location</th>
-                    <th scope="col">ATM Address</th>
-                    <th scope="col">ATM Ip Address</th>
-                    <th scope="col">Swith Ip Address</th>
-                    <th scope="col">Switch Port Number</th>
-                    <th scope="col" colspan="2">ATM Installed Date</th>
+                    <th scope="col">Problem</th>
+                    <th scope="col">Remarks</th>
+                    <th scope="col">ATM Issue Priority</th>
+
 
                 </tr>
 
-                {% for all_atm in all_atm_details %}
+                {% for all_atm in all_atm_issue_details %}
                 <tr>
                     <td>{{all_atm.s_n}}</td>
                     <td class="">
-                        {{all_atm.branch_name}}
+                        {{all_atm.branch_code.branch_name}}
                     </td>
 
                     <td class="">

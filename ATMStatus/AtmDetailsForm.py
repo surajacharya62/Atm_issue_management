@@ -1,9 +1,19 @@
 from django import forms
 from django.shortcuts import render
-from .models import AtmDetails,AtmTerminalIdDetails
+from .models import AtmDetails, AtmTerminalIdDetails
+
+
+class MyDateInput(forms.DateInput):
+    input_type = 'date'
 
 
 class AtmDetailsForm(forms.ModelForm):
+    atm_installed_date = forms.DateField(widget=MyDateInput)
+    # branch_name = forms.ChoiceField(
+    #     choices=[(i.atm_terminal_id, i.atm_terminal_id)
+    #              for i in AtmTerminalIdDetails.objects.all()],
+    #     required=True)
+
     class Meta:
         model = AtmDetails
         fields = ['id',
@@ -17,17 +27,3 @@ class AtmDetailsForm(forms.ModelForm):
                   'switch_ip_address',
                   'switch_port_number',
                   'atm_installed_date']
-
-    # def clean_switch_ip(self,*args,**kwargs):
-    #     ip = self.cleaned_data.get('switch_ip_address')
-    #     if not "test" in ip:
-    #         print("error")
-    #         raise forms.ValidationError("Not valid")
-
-    # def clean(self):
-    #     cleaned_data = super(AddATMStatusForm, self).clean()
-    #     ip = cleaned_data.get('switch_ip_address')
-    #     if not "test" in ip:
-    #         print("error-Big error")
-    #
-    #     return ip

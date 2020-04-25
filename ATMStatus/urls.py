@@ -4,7 +4,7 @@ from . import views
 from django.contrib.auth.views import LoginView
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import ATMTerminalIdDetailsDeleteView
+from .views import ATMTerminalIdDetailsDeleteView, AtmDetailsListView, AtmIssueDetailsListView
 
 
 urlpatterns = [
@@ -21,8 +21,15 @@ urlpatterns = [
          ATMTerminalIdDetailsDeleteView.as_view(), name='ATMTerminalId-delete'),
     path('deleteatmterminalid/<int:pid>/', views.delete_atm_terminal_id,
          name='ATMStatus_delete_terminal_id'),
-    path('viewallatmdetails/', views.view_atm_details, name=""),
-    path('viewallatmissuedetails/', views.view_atm_issue_details, name=""),
+    path('addatmdetails/', views.add_atm_details, name="add-atm-details"),
+    path('editatmdetails/<int:pid>/',
+         views.modify_atm_details, name="modify-atm-details"),
+    path('deleteatmdetails/<int:pid>/',
+         views.delete_atm_details, name="delete-atm-details"),
+    path('viewallatmdetails/', AtmDetailsListView.as_view(),
+         name="view-all-atm-details"),
+    path('view-all-atm-issue-details/', AtmIssueDetailsListView.as_view(),
+         name="view_atm_issue_details"),
     path('contact/', views.contact, name="ATMStatus_contact"),
     path('<int:pid>/', views.modify_atm_issue, name='modify_atm_issue'),
     path('updateatm/', views.update_atm_issue, name='update_atm_issue'),

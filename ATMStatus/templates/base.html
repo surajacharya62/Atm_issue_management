@@ -13,10 +13,12 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'main.css'%}">
     <link rel="stylesheet" type="text/css" href="{% static 'test.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gijgo.min.css'%}">
     <title>ATM Issue Management System</title>
 </head>
 
 <body>
+
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             <div class="container">
@@ -27,10 +29,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
-                        <a class="nav-item nav-link" href="{% url '' %}">Home</a>
-                        <a class="nav-item nav-link" href="{% url '' %}">Raise-Ticket</a>
-                        <a class="nav-item nav-link" href="{% url '' %}">View-Tickets </a>
-                        <a class="nav-item nav-link" href="{% url '' %}">Atm-Details</a>
+                        <a class="nav-item nav-link" href="">Home</a>
+                        <a class="nav-item nav-link" href="">Raise-Ticket</a>
+                        <a class="nav-item nav-link" href="">View-Tickets </a>
+                        <a class="nav-item nav-link" href="">Atm-Details</a>
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
@@ -48,33 +50,21 @@
             </div>
         </nav>
     </header>
-    <main role=" main" class="container">
-        <div class="row">
-            <div class="col-md-8">
-                {% if messages %}
-                {% for message in messages %}
-                <div class="alert alert-{{message.tags}}">
-                    {{message}}
-                </div>
-                {% endfor %}
-                {% endif %}
-                {% block content %}{% endblock %}
+
+    <div class="container">
+        <div class="col">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">
+                {{message}}
             </div>
-            <div class="col-md-4">
-                <div class="content-section">
-                    <h3>WELCOME!</h3>
-                    <p class='text-muted'>ATM Issue Management System
-                        <ul class="list-group">
-                            <!-- <li class="list-group-item list-group-item-light"></li>
-                            <li class="list-group-item list-group-item-light">Announcements</li>
-                            <li class="list-group-item list-group-item-light">Calendars</li>
-                            <li class="list-group-item list-group-item-light">etc</li> -->
-                        </ul>
-                    </p>
-                </div>
-            </div>
+            {% endfor %}
+            {% endif %}
+            {% block content %}
+            {% endblock %}
+
         </div>
-    </main>
+    </div>
 
 
 
@@ -89,6 +79,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="{% static 'js/gijgo.min.js'%}"></script>
     </div>
 </body>
 

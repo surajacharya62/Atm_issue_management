@@ -1,20 +1,25 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content%}
-<form method="post" action="">
-    {% csrf_token %}
-    <fieldset class="form-group">
-        <legend class="border-bottom mb-4">Add new ATM terminal id </legend>
-        {{add_terminal_id|crispy}}
+<div class="container">
+    <div class="col-8">
+        <div class="content-section">
+            <form method="post" action="">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Add new ATM terminal id </legend>
+                    {{add_terminal_id|crispy}}
 
-    </fieldset>
-    <div class="form-group">
-        <button class="btn btn-outline-info" type="submit">Save</button>
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Save</button>
 
+                </div>
+
+            </form>
+        </div>
     </div>
-
-</form>
-
+</div>
 <!-- <table class="table table-borderless">
             <thead class="thead-dark" style="size:16px;">
                 <th colspan="2">

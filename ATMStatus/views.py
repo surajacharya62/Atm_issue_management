@@ -6,7 +6,9 @@ from .AddTerminalIdDetailsForm import AddTerminalIdForm
 from django.urls import reverse
 from django.contrib import messages
 import re
-from django.views.generic import DeleteView
+from django.views.generic import (
+    CreateView, DeleteView, ListView
+)
 
 
 def index(request):
@@ -98,7 +100,161 @@ class ATMTerminalIdDetailsDeleteView(DeleteView):
 
 def view_atm_details(request):
     all_atm_details = AtmDetails.objects.all()
-    return render(request, 'ViewAtmDetails.html', {'all_atm_details': all_atm_details})
+    return render(request, 'viewatmdetails.html', {'all_atm_details': all_atm_details})
+
+
+class AtmDetailsListView(ListView):
+    all_atm_details = AtmDetails.objects.all()
+
+    model = AtmDetails
+    template_name = 'viewatmdetails.html'
+    context_object_name = 'all_atm_details'
+
+    paginate_by = 10
+
+
+def add_atm_details(request):
+    form = AtmDetailsForm()
+    total_row = AtmDetails.objects.all().count()
+    try:
+        if request.method == 'POST':
+            form = AtmDetailsForm(request.POST)
+            if form.is_valid():
+                is_valid_atm_ip_address = form.cleaned_data.get(
+                    'atm_ip_address')
+                is_valid_switch_ip_address = form.cleaned_data.get(
+                    'switch_ip_address')
+                is_valid_branch_code = form.cleaned_data.get('branch_code')
+                is_valid_branch_name = form.cleaned_data.get('branch_name')
+
+                # test = AtmDetails.objects.values_list(
+                #     'id').get(branch_name=valid_branch_name)
+
+                is_branchname_already_exists = AtmDetails.objects.filter(
+                    branch_name=is_valid_branch_name).values('id')
+
+                pattern = re.compile('10[.][0-9][0-9][.][0-9][0-9]')
+                if is_valid_branch_code <= 0:
+                    messages.warning(
+                        request, f'Your provided branch code is not valid.')
+                elif is_branchname_already_exists:
+                    messages.warning(
+                        request, f'Your provided branch name is already exists.')
+                elif not pattern.match(is_valid_atm_ip_address):
+                    messages.warning(
+                        request, f'Please follow the [10.00.00.00] pattern in ATM IP Address')
+                elif not pattern.match(is_valid_switch_ip_address):
+                    messages.warning(
+                        request, f'Please follow the [10.00.00.00] pattern in Switch IP Address')
+                else:
+                    form.save()
+                    return redirect('view-all-atm-details')
+
+        else:
+
+            form.fields['s_n'].initial = total_row + 1
+            form.fields['s_n'].widget.attrs['readonly'] = True
+            form.fields['switch_port_number'].widget.attrs['readonly'] = True
+    except:
+        messages.warning(
+            request, f'Something went wrong')
+
+    return render(request, 'ATMStatus/atmdetails_form.html', {'form': form})
+
+# modifying the atm details
+
+
+def modify_atm_details(request, pid):
+
+    atm_details = AtmDetails.objects.get(id=pid)
+    form = AtmDetailsForm(instance=atm_details)
+
+    # try:
+    if request.method == 'POST':
+        form = AtmDetailsForm(request.POST, instance=atm_details)
+        if form.is_valid():
+            is_valid_atm_ip_address = form.cleaned_data.get('atm_ip_address')
+            is_valid_switch_ip_address = form.cleaned_data.get(
+                'switch_ip_address')
+            is_valid_branch_name = form.cleaned_data.get('branch_name')
+
+            pattern = re.compile('10[.][0-9][0-9][.][0-9][0-9]')
+
+            if not pattern.match(is_valid_atm_ip_address):
+                messages.warning(
+                    request, f'Please follow the [10.00.00.00] pattern in ATM IP Address')
+                form.fields['s_n'].widget.attrs['readonly'] = True
+                form.fields['switch_port_number'].widget.attrs['readonly'] = True
+            elif not pattern.match(is_valid_switch_ip_address):
+                messages.warning(
+                    request, f'Please follow the [10.00.00.00] pattern in Switch IP Address')
+                form.fields['s_n'].widget.attrs['readonly'] = True
+                form.fields['switch_port_number'].widget.attrs['readonly'] = True
+            else:
+                form.save()
+                return redirect('view-all-atm-details')
+
+    else:
+
+        form.fields['s_n'].widget.attrs['readonly'] = True
+        form.fields['switch_port_number'].widget.attrs['readonly'] = True
+    # except:
+    #     pass
+        # messages.warning(
+        #     request, f'Something went wrong')
+
+    return render(request, 'ATMStatus/modifyatmdetails_form.html', {'form': form})
+
+
+def delete_atm_details(request, pid):
+    delete_atm_details = AtmDetails.objects.get(id=pid)
+    if request.method == 'POST':
+        delete_atm_details.delete()
+        messages.success(
+            request, f"'{delete_atm_details}' ATM details has been successfully deleted!")
+        return redirect('view-all-atm-details')
+
+    return render(request, 'ATMStatus/deleteatmdetails_form.html', {'delete_atm_details': delete_atm_details})
+
+
+class AtmIssueDetailsListView(ListView):
+    all_atm_issue_details = AtmIssueDetails.objects.all()
+    model = AtmIssueDetails
+    context = {
+        'atmissuedetails': all_atm_issue_details
+
+    }
+    template_name = 'ATMStatus/view_atm_issue_details.html'
+    context_object_name = 'all_atm_issue_details'
+    paginate_by = 10
+
+# class AtmDetailsCreateView(CreateView):
+#     form_class = AtmDetailsForm
+#     success_url = '/ATMStatus/viewallatmdetails/'
+#     template_name = 'ATMStatus/atmdetails_form.html/'
+
+#     def get_initial(self):
+
+#         total_row = AtmDetails.objects.all().count()
+#         form.fields['s_n'].widget.attrs['readonly'] = True
+#         # recipe = get_object_or_404(AtmDetails, slug=self.kwargs.get('slug'))
+
+#         return {
+
+#             's_n': total_row + 1
+#         }
+
+#     def form_valid(self, form):
+#         total_row = AtmDetails.objects.all().count()
+#         if form.is_valid():
+#             valid_sn = form.cleaned_data.get('s_n')
+#             if valid_sn < 0:
+#                 messages.warning(
+#                     self.request, f'Please provide valid serial number i.e sn should not be in negative number.')
+#                 return super().form_invalid(form)
+#             else:
+#                 return super().form_valid(form)
+
 
 # -> View atm issues details.
 

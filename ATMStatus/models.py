@@ -14,7 +14,8 @@ class AtmTerminalIdDetails(models.Model):
 class AtmDetails(models.Model):
     CHOICES = [('OffSite', 'OffSite'), ('OnSite', 'OnSite'), ]
     s_n = models.IntegerField()
-    branch_name = models.CharField(max_length=100)
+    branch_name = models.CharField(
+        max_length=100)
     branch_code = models.IntegerField(unique=True)
     atm_terminal_id = models.ForeignKey(
         AtmTerminalIdDetails, on_delete=models.CASCADE, null=True)
@@ -33,7 +34,8 @@ class AtmDetails(models.Model):
 class AtmIssueDetails(models.Model):
     CHOICES = [('High', 'High'), ('Medium', 'Medium'), ('Low', 'Low')]
     s_n = models.IntegerField(null=True)
-    #branch_name = models.ForeignKey(AtmDetails,on_delete=models.CASCADE, null=True, related_name='AtmDetails_branch_name')
+    # branch_name = models.ForeignKey(
+    #     AtmDetails, on_delete=models.CASCADE, null=True, related_name='AtmDetails_branch_name')
     branch_code = models.ForeignKey(
         AtmDetails, on_delete=models.CASCADE, null=True, related_name='AtmDetails_branch_code')
     atm_terminal_id = models.ForeignKey(
