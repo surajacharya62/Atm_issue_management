@@ -9,7 +9,7 @@ from .views import ATMTerminalIdDetailsDeleteView, AtmDetailsListView, AtmIssueD
 
 urlpatterns = [
 
-    path('', views.view_atm_terminal_id_details,
+    path('index/', views.view_atm_terminal_id_details,
          name="view_all_atm_terminal_id_details"),
     # path('addatmstatus/',views.add_form_status),
     path('addterminalid/', views.add_terminal_id_details, name="add_terminal_id"),
