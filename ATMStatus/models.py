@@ -3,6 +3,15 @@ from django.db import models
 from django.core.validators import RegexValidator, validate_slug
 
 
+class BranchDetails(models.Model):
+    s_n = models.IntegerField()
+    branch_name = models.CharField(max_length=100)
+    branch_code = models.IntegerField()
+
+    def __str__(self):
+        return self.branch_name
+
+
 class AtmTerminalIdDetails(models.Model):
     s_n = models.IntegerField()
     atm_terminal_id = models.CharField(max_length=8)
@@ -14,9 +23,9 @@ class AtmTerminalIdDetails(models.Model):
 class AtmDetails(models.Model):
     CHOICES = [('OffSite', 'OffSite'), ('OnSite', 'OnSite'), ]
     s_n = models.IntegerField()
-    branch_name = models.CharField(
-        max_length=100)
-    branch_code = models.IntegerField(unique=True)
+    branch_name = models.ForeignKey(
+        BranchDetails, on_delete=models.CASCADE, related_name='AtmDetails_branch_name')
+    branch_code = models.IntegerField(default='Please choose branch code')
     atm_terminal_id = models.ForeignKey(
         AtmTerminalIdDetails, on_delete=models.CASCADE, null=True)
     atm_location = models.CharField(
@@ -27,20 +36,29 @@ class AtmDetails(models.Model):
     switch_port_number = models.IntegerField(default=24023)
     atm_installed_date = models.DateField()
 
-    def __str__(self):
-        return self.branch_name
-
 
 class AtmIssueDetails(models.Model):
     CHOICES = [('High', 'High'), ('Medium', 'Medium'), ('Low', 'Low')]
     s_n = models.IntegerField(null=True)
-    # branch_name = models.ForeignKey(
-    #     AtmDetails, on_delete=models.CASCADE, null=True, related_name='AtmDetails_branch_name')
-    branch_code = models.ForeignKey(
-        AtmDetails, on_delete=models.CASCADE, null=True, related_name='AtmDetails_branch_code')
+    branch_name = models.ForeignKey(
+        BranchDetails, on_delete=models.CASCADE, null=True, related_name='AtmIssuedDetails_branch_name')
+    branch_code = models.IntegerField(null=True)
     atm_terminal_id = models.ForeignKey(
         AtmTerminalIdDetails, on_delete=models.CASCADE, null=True)
     problem = models.CharField(max_length=2083, null=True)
     remarks = models.CharField(max_length=2083, null=True)
     atm_issue_priority = models.CharField(
         choices=CHOICES, default='Medium', max_length=6)
+
+
+class ATMLoginCredentialsDetails(models.Model):
+    s_n = models.IntegerField()
+    branch_name = models.ForeignKey(
+        BranchDetails, on_delete=models.CASCADE, related_name='BranchDetails_branch_name')
+    branch_code = models.IntegerField()
+    ATM_IP = models.CharField(max_length=50)
+    VNC_password = models.CharField(max_length=50)
+    R_admin_user_name = models.CharField(max_length=50)
+    R_admin_password = models.CharField(max_length=50)
+    ATM_journal_user_name = models.CharField(max_length=50)
+    ATM_journal_password = models.CharField(max_length=50)

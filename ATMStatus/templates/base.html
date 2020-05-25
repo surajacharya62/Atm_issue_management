@@ -27,12 +27,58 @@
                     aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
                         <a class="nav-item nav-link" href="">Home</a>
-                        <a class="nav-item nav-link" href="">Raise-Ticket</a>
-                        <a class="nav-item nav-link" href="">View-Tickets </a>
-                        <a class="nav-item nav-link" href="">Atm-Details</a>
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                                ATM Terminal Details
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{% url 'add_terminal_id' %}">Add Terminal</a>
+                                <a class="dropdown-item" href="{% url 'ATMStatus_view_atm_terminal_id' %}">View
+                                    Terminal</a>
+                            </div>
+                        </div>
+
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                                ATM Details
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Add Details</a>
+                                <a class="dropdown-item" href="#">View Details</a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                                ATM Issue Details
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Add Issue</a>
+                                <a class="dropdown-item" href="#">View Issues</a>
+
+
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                                ATM Login Details
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Add Login Details</a>
+                                <a class="dropdown-item" href="#">View Login Details</a>
+
+
+                            </div>
+                        </div>
+
+
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
@@ -52,13 +98,7 @@
 
     <div class="container">
         <div class="col">
-            {% if messages %}
-            {% for message in messages %}
-            <div class="alert alert-{{message.tags}}">
-                {{message}}
-            </div>
-            {% endfor %}
-            {% endif %}
+
             {% block content %}
             {% endblock %}
 

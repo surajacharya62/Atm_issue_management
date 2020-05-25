@@ -1,0 +1,51 @@
+{% extends 'base.html'%}
+{% block content %}
+{% load static %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{message.tags}}">
+    {{message}}
+</div>
+{% endfor %}
+{% endif %}
+<div class="content-section">
+    <table class="table table-bordered text-center">
+        <thead class="thead-dark">
+            <th colspan="12">ATM Terminal Details </th>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="col">S.N</th>
+                <th scope="col" colspan="2">ATM Terminal ID</th>
+
+            </tr>
+
+            {% for all_atm in all_atm_terminal_id %}
+            <tr>
+                <td>{{all_atm.s_n}}</td>
+                <td class="editable" data-id="{{all_atm.id}}" data-type="{{all_atm.atm_terminal_id}}">
+                    {{all_atm.atm_terminal_id}}
+                </td>
+                <td class="text-dark">
+                    <a href="{% url 'ATMStatus_modify_terminal_id' all_atm.id %}"><button type="button"
+                            class="btn btn-info"><img src="{% static 'img/pencil-2x.png'%}"
+                                class="mr-1">Edit</button></a>
+
+                    <a href="{% url 'ATMStatus_delete_terminal_id' all_atm.id %}"><button type="button"
+                            class="btn btn-info"><img src="{% static 'img/delete-2x.png'%}"
+                                class="mr-1">Delete</button></a>
+
+
+                </td>
+
+
+
+
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

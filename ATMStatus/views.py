@@ -1,19 +1,49 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
-from .models import AtmDetails, AtmTerminalIdDetails, AtmIssueDetails
-from .AtmDetailsForm import AtmDetailsForm
-from .AddTerminalIdDetailsForm import AddTerminalIdForm
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from rest_framework.parsers import JSONParser
+from .models import(
+    AtmDetails,
+    AtmTerminalIdDetails,
+    AtmIssueDetails,
+    ATMLoginCredentialsDetails)
+from ATMStatus.forms.AtmDetailsForm import AtmDetailsForm
+from ATMStatus.forms.AddTerminalIdDetailsForm import AddTerminalIdForm
+from ATMStatus.forms.atmissuedetails_form import AtmIssueDetailsForm
+from ATMStatus.forms.atm_login_credentials_details_form import ATMLoginCredentialsDetailsForm
 from django.urls import reverse
 from django.contrib import messages
 import re
 from django.views.generic import (
     CreateView, DeleteView, ListView
 )
+import xlwt
+import os
+from .serializers import AtmTerminalIdDetailsSerializer
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
 
 
 def index(request):
     atm_fields = AtmIssueDetails.objects.all()
+
     return render(request, 'View_ATM_Status.html', {'atm_fields': atm_fields})
+
+# -> view all all terminal id details
+
+
+def view_atm_terminal_id_details(request):
+    all_atm_terminal_id = AtmTerminalIdDetails.objects.all()
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+
+    print(os.getenv('test'))
+    print(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_STORAGE_BUCKET_NAME)
+
+    return render(request, 'ATMStatus/atm_terminal_details/view_atm_terminal_id_details.html', {'all_atm_terminal_id': all_atm_terminal_id})
 
 
 def add_terminal_id_details(request):
@@ -29,18 +59,24 @@ def add_terminal_id_details(request):
         add_terminal_id = AddTerminalIdForm(request.POST)
         if add_terminal_id.is_valid():
             atm_id = add_terminal_id.cleaned_data.get('atm_terminal_id')
+            is_terminal_id_already_exist = AtmTerminalIdDetails.objects.filter(
+                atm_terminal_id=atm_id).values('id')
             atm_id_pattern = re.compile('JBBL[0-9][0-9][0-9][0-9]')
-            if not atm_id_pattern.match(atm_id):
+            if is_terminal_id_already_exist:
+                messages.warning(
+                    request, f'Your provided terminal id is already exists.')
+            elif not atm_id_pattern.match(atm_id):
                 print('print1')
                 # error_message = 'Please follow the [JBBL_branchid_01]'
                 messages.warning(
                     request, f'Please follow the [JBBL_branchid_01]')
             else:
-                print('print2')
+                messages.success(
+                    request, 'New ATM terminal has been added successfully.')
                 add_terminal_id.save()
                 return redirect(view_atm_terminal_id_details)
 
-    return render(request, 'AddTerminalIdDetails.html', {'add_terminal_id': add_terminal_id, 'atm_id_pattern_error': error_message})
+    return render(request, 'ATMStatus/atm_terminal_details/add_terminal_id_details.html', {'add_terminal_id': add_terminal_id, 'atm_id_pattern_error': error_message})
 
 
 def modify_atm_terminal_id(request, pid):
@@ -72,7 +108,7 @@ def modify_atm_terminal_id(request, pid):
                 modify_atm_terminal_id.save()
                 return redirect(view_atm_terminal_id_details)
 
-    return render(request, 'ModifyATMTerminalIdDetails.html', {'modify_atm_terminal_id': modify_atm_terminal_id, 'atm_id_pattern_error': error_message})
+    return render(request, 'ATMStatus/atm_terminal_details/modify_atm_terminal_id_details.html', {'modify_atm_terminal_id': modify_atm_terminal_id, 'atm_id_pattern_error': error_message})
 
 
 def delete_atm_terminal_id(request, pid):
@@ -87,17 +123,15 @@ def delete_atm_terminal_id(request, pid):
         delete_terminal_id.delete()
         return redirect(view_atm_terminal_id_details)
 
-    return render(request, 'DeleteATMTerminalIdDetails.html', {'delete_atm_id': deleted_atm_id})
+    return render(request, 'ATMStatus/atm_terminal_details/delete_atm_terminal_id_details.html', {'delete_atm_id': deleted_atm_id})
 
 
-class ATMTerminalIdDetailsDeleteView(DeleteView):
-    model = AtmTerminalIdDetails
-    success_url = '/ATMStatus/viewallatmterminalid'
+# class ATMTerminalIdDetailsDeleteView(DeleteView):
+#     model = AtmTerminalIdDetails
+#     success_url = '/ATMStatus/viewallatmterminalid'
 
 
 # -> Viewing atm details.
-
-
 def view_atm_details(request):
     all_atm_details = AtmDetails.objects.all()
     return render(request, 'viewatmdetails.html', {'all_atm_details': all_atm_details})
@@ -105,9 +139,8 @@ def view_atm_details(request):
 
 class AtmDetailsListView(ListView):
     all_atm_details = AtmDetails.objects.all()
-
     model = AtmDetails
-    template_name = 'viewatmdetails.html'
+    template_name = 'view_atm_details.html'
     context_object_name = 'all_atm_details'
 
     paginate_by = 10
@@ -224,10 +257,211 @@ class AtmIssueDetailsListView(ListView):
         'atmissuedetails': all_atm_issue_details
 
     }
-    template_name = 'ATMStatus/view_atm_issue_details.html'
+    template_name = 'ATMStatus/atm_issue_details/view_atm_issue_details.html'
     context_object_name = 'all_atm_issue_details'
     paginate_by = 10
 
+
+# -> Adding atm issue details
+def add_atm_issue_details(request):
+    form = AtmIssueDetailsForm()
+    total_row = AtmIssueDetails.objects.all().count()
+    # try:
+    if request.method == 'POST':
+        form = AtmIssueDetailsForm(request.POST)
+        if form.is_valid():
+
+            is_valid_branch_code = form.cleaned_data.get('branch_code')
+
+            if is_valid_branch_code == 'Please select branch code':
+                messages.error(request, f'Please provide valid branch code')
+            else:
+                form.save()
+                messages.success(
+                    request, f"ATM issue details has been successfully added!")
+
+                return redirect('view-atm-issue-details')
+
+    else:
+
+        form.fields['s_n'].initial = total_row + 1
+        form.fields['s_n'].widget.attrs['readonly'] = True
+
+    # except:
+    #     messages.warning(
+    #         request, f'Something went wrong')
+
+    return render(request, 'ATMStatus/atm_issue_details/add_atm_issue_details.html', {'form': form})
+
+ # -> Adding atm issue details
+
+
+def modify_atm_issue_details(request, pid):
+    update_atm_issue = AtmIssueDetails.objects.get(id=pid)
+    form = AtmIssueDetailsForm(instance=update_atm_issue)
+    # try:
+    if request.method == 'POST':
+        form = AtmIssueDetailsForm(request.POST, instance=update_atm_issue)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request, f"'{update_atm_issue.id}' ATM issue details has been successfully modified!")
+            return redirect('view-atm-issue-details')
+
+    # except:
+    #     messages.warning(
+    #         request, f'Something went wrong')
+
+    return render(request, 'ATMStatus/atm_issue_details/modify_atm_issue_details.html', {'form': form})
+
+
+# ->Deleting the issue details
+
+
+def delete_atm_issue_details(request, pid):
+    delete_atm_issue_details = AtmIssueDetails.objects.get(id=pid)
+    if request.method == 'POST':
+        messages.success(
+            request, f"'{delete_atm_issue_details.id}' ATM issue details has been successfully deleted!")
+        delete_atm_issue_details.delete()
+        return redirect('view-atm-issue-details')
+
+    return render(request, 'ATMStatus/atm_issue_details/delete_atm_issue_details.html', {'delete_atm_issue_details': delete_atm_issue_details})
+
+
+class AtmLoginCredentialsDetailsListView(ListView):
+    all_atm_login_details = ATMLoginCredentialsDetails.objects.all()
+    model = ATMLoginCredentialsDetails
+    context = {
+        'atmlogindetails': all_atm_login_details
+
+    }
+    template_name = 'ATMStatus/atm_login_credentials_details/view_atm_login_credentials_details.html'
+    context_object_name = 'context'
+    paginate_by = 5
+
+
+def add_atm_login_credentials_details(request):
+    form = ATMLoginCredentialsDetailsForm()
+    total_row = ATMLoginCredentialsDetails.objects.all().count()
+    try:
+        if request.method == 'POST':
+            form = ATMLoginCredentialsDetailsForm(request.POST)
+            if form.is_valid():
+                atm_details = form.cleaned_data.get('branch_name')
+                is_atm_detail_already_exists = ATMLoginCredentialsDetails.objects.filter(
+                    branch_name=atm_details).values('id')
+                if is_atm_detail_already_exists:
+                    messages.warning(
+                        request, f'Your provided branch atm details is already exists.')
+                else:
+                    form.save()
+                    messages.success(
+                        request, f"ATM login credentials details has been successfully added!")
+                    return redirect('view-atm-login-credentials-details')
+
+        else:
+
+            form.fields['s_n'].initial = total_row + 1
+            form.fields['s_n'].widget.attrs['readonly'] = True
+
+    except:
+        messages.warning(
+            request, f'Something went wrong')
+
+    return render(request, 'ATMStatus/atm_login_credentials_details/add_atm_login_credentials_details.html', {'form': form})
+
+# -> Modify and update the atm login credentials details
+
+
+def modify_atm_login_credentials_details(request, pid):
+
+    update_atm_credentials = ATMLoginCredentialsDetails.objects.get(id=pid)
+    form = ATMLoginCredentialsDetailsForm(instance=update_atm_credentials)
+    try:
+        if request.method == 'POST':
+            form = ATMLoginCredentialsDetailsForm(
+                request.POST, instance=update_atm_credentials)
+            if form.is_valid():
+                form.save()
+                messages.success(
+                    request, f"ID '{update_atm_credentials.id}' ATM login credentials details has been successfully updated!")
+                return redirect('view-atm-login-credentials-details')
+        else:
+            form.fields['s_n'].widget.attrs['readonly'] = True
+    except:
+        messages.warning(
+            request, f'Something went wrong')
+    return render(request, 'ATMStatus/atm_login_credentials_details/modify_atm_login_credentials_details.html', {'form': form})
+
+
+# ->Delete atm login credentials details
+def delete_atm_login_details(request, pid):
+    delete_atm_login_details = ATMLoginCredentialsDetails.objects.get(id=pid)
+    if request.method == 'POST':
+        messages.success(
+            request, f"ID '{delete_atm_login_details.id}' ATM login credentials details has been successfully deleted!")
+
+        delete_atm_login_details.delete()
+        return redirect('view-atm-login-credentials-details')
+
+    return render(request, 'ATMStatus/atm_login_credentials_details/delete_atm_login_credentials_details.html', {'delete_atm_login_details': delete_atm_login_details})
+
+# ->exporting to excel
+
+
+def export_to_excel(request):
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename=Report.xls'
+    work_book = xlwt.Workbook(encoding='utf-8')
+    work_sheet_name = work_book.add_sheet('Data')
+    row_nu = 0
+    header_font_style = xlwt.XFStyle()
+    header_font_style.font.bold = True
+    columns = [
+        'SN.',
+        'Branch Name',
+        'Branch Code',
+        'ATM IP',
+        'VNC Password',
+        'RAdmin Username',
+        'RAdmin Password',
+        'ATM Journal Username',
+        'ATM Journal Password'
+    ]
+
+    for column_num in range(len(columns)):
+        work_sheet_name.write(row_nu, column_num,
+                              columns[column_num], header_font_style)
+
+    body_font_style = xlwt.easyxf(
+        'font: bold 1, name Tahoma, height 160;'
+        'align: vertical center, horizontal center, wrap on;'
+        'borders: left thin, right thin, top thin, bottom thin;'
+        'pattern: pattern solid '
+    )
+
+    body_rows = ATMLoginCredentialsDetails.objects.all().values_list(
+        's_n',
+        'branch_name',
+        'branch_code',
+        'ATM_IP',
+        'VNC_password',
+        'R_admin_user_name',
+        'R_admin_password',
+        'ATM_journal_user_name',
+        'ATM_journal_password'
+    )
+
+    for row in body_rows:
+        print
+        row_nu += 1
+        for col_num in range(len(row)):
+            work_sheet_name.write(
+                row_nu, col_num, row[col_num], body_font_style)
+
+    work_book.save(response)
+    return response
 # class AtmDetailsCreateView(CreateView):
 #     form_class = AtmDetailsForm
 #     success_url = '/ATMStatus/viewallatmdetails/'
@@ -256,43 +490,6 @@ class AtmIssueDetailsListView(ListView):
 #                 return super().form_valid(form)
 
 
-# -> View atm issues details.
-
-
-def view_atm_issue_details(request):
-    all_atm_issue_details = AtmIssueDetails.objects.all(AtmDetails_id)
-    # all_atm_details = AtmDetails.objects.all()
-    # all_merge = all_atm_issue_details | all_atm_details
-    # print(all_merge)
-    return render(request, 'ViewAtmIssueDetails.html', {'all_atm_issue_details': all_atm_issue_details})
-# def add_form_status(request, pid=0):
-#     atm_details = ''
-#     if request.method == "GET":
-#         add_form = AddATMStatusForm()
-#         count_row = AtmDetails.objects.all().count()
-#         count_row += 1
-#         atm_details.fields['s_n'].initial = count_row
-#         atm_details.fields['s_n'].widget.attrs['readonly'] = True
-#
-#         print(count_row)
-#         return render(request, 'AddATMStatusForm.html', {'addform': add_form})
-#
-#
-#     else:
-#
-#         add_form = AddATMStatusForm(request.POST)
-#
-#         sn = add_form.fields['s_n']
-#         print(sn)
-#         if add_form.is_valid():
-#             try:
-#
-#                 add_form.save()
-#                 return redirect(index)
-#             except:
-#                 pass
-#
-#
 #
 #     # print('test1')
 #     # sn = request.POST.get("inputSN")
@@ -320,91 +517,109 @@ def view_atm_issue_details(request):
 #     # print('test2')
 #     # return render(request, 'AddATMStatusForm.html')
 
-
 '''
 Adding new terminal ID
 '''
 
 
-def view_atm_terminal_id_details(request):
-    all_atm_terminal_id = AtmTerminalIdDetails.objects.all()
-    return render(request, 'ViewATMTerminalIdDetails.html', {'all_atm_terminal_id': all_atm_terminal_id})
+# @csrf_exempt
+# def serialize(request):
 
+#     if request.method == 'GET':
+#         all_id = AtmTerminalIdDetails.objects.all()
+#         serialize = AtmTerminalIdDetailsSerializer(all_id, many=True)
+#         return JsonResponse(serialize.data, safe=False)
+#     elif request.method == 'POST':
+#         data = JSONParser().parse(request)
+#         serialize = AtmTerminalIdDetailsSerializer(data=data)
+#         if serialize.is_valid():
+#             serialize.save()
+#             return JsonResponse(serialize.data, status=200)
+#         return JsonResponse(serialize.errors, status=400)
 
-# ->   Modifying and updating the issues.
-def modify_atm_issue(request, pid):
-    addform = AtmIssueDetails.objects.get(pk=pid)
-    addform1 = AddATMStatusForm(instance=addform)
-    addform1.fields['terminal_id'].widget.attrs['readonly'] = True
-    atm_error_message = ''
-    switch_error_message = ''
+@api_view(['GET', 'POST'])
+def serialize(request):
+
     if request.method == 'GET':
-        addform = AddATMStatusForm(instance=addform)
-        addform.fields['terminal_id'].widget.attrs['readonly'] = True
-        # error = ''
-        # return render(request, 'ModifyATMIssue.html', {'atm_issue_update': update_issue},{'error_message':error})
-    else:
-        addform = AddATMStatusForm(request.POST, instance=addform)
+        all_id = AtmTerminalIdDetails.objects.all()
+        serialize = AtmTerminalIdDetailsSerializer(all_id, many=True)
+        return Response(serialize.data)
+    elif request.method == 'POST':
 
-        if addform.is_valid():
-
-            validate_switch_ip = addform.cleaned_data.get('switch_ip_address')
-
-            validate_atm_ip = addform.cleaned_data.get('atm_ip_address')
-            print(validate_atm_ip)
-            pattern = re.compile('[0-9][0-9][.][0-9][.]')
-
-            if not pattern.match(validate_atm_ip):
-                atm_error_message = 'Please follow: (10.0.)'
-
-            elif not pattern.match(validate_switch_ip):
-
-                switch_error_message = 'Please follow: (10.0.)'
-
-            else:
-                addform.save()
-                return redirect(view_atm_issue)
-
-    return render(request, 'ModifyATMIssue.html', {'atm_issue_update': addform, 'atm_error_message': atm_error_message, 'switch_error_message': switch_error_message})
+        serialize = AtmTerminalIdDetailsSerializer(data=request.data)
+        if serialize.is_valid():
+            serialize.save()
+            return Response(serialize.data, status=status.HTTP_201_CREATED)
+        return Response(serialize.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-def update_atm_issue(request, pid):
-    new_value = ViewATMStatus.objects.get(id=pid)
-    print(new_value)
-    print('update')
-    update_issue = AddATMStatusForm(request.POST, instance=new_value)
-    print(update_issue)
-    if request.method == 'POST':
-        if update_issue.is_valid():
-            update = update_issue.cleaned_data
-            try:
-                update.save()
-                return redirect(view_atm_issue)
-            except:
-                pass
-    return render(request, 'ModifyATMIssue.html', {'new_value': new_value})
+# @csrf_exempt
+# def terminal_serialize(request, pk):
+#     try:
+#         all_id = AtmTerminalIdDetails.objects.get(id=pk)
+#     except AtmTerminalIdDetails.DoesNotExist:
+#         return HttpResponse(status=404)
+
+#     if request.method == 'GET':
+#         seralizer = AtmTerminalIdDetailsSerializer(all_id)
+#         return JsonResponse(seralizer.data)
+
+#     elif request.method == 'PUT':
+#         data = JSONParser().parse(request)
+#         serializer = AtmTerminalIdDetailsSerializer(all_id, data=data)
+#         print('test1')
+#         if serializer.is_valid():
+#             print('test2')
+#             serializer.save()
+#             print('test3')
+#             return JsonResponse(serializer.data)
+#         return JsonResponse(serializer.errors, status=400)
+
+#     elif request.method == 'DELETE':
+#         print('deleted1')
+#         all_id.delete()
+#         print('deleted2')
+#         return HttpResponse(status=204)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def terminal_serialize(request, pk):
+    try:
+        all_id = AtmTerminalIdDetails.objects.get(id=pk)
+    except AtmTerminalIdDetails.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        seralizer = AtmTerminalIdDetailsSerializer(all_id)
+        return Response(seralizer.data)
+
+    elif request.method == 'PUT':
+        serializer = AtmTerminalIdDetailsSerializer(all_id, data=request.data)
+        print('test1')
+        if serializer.is_valid():
+            print('test2')
+            serializer.save()
+            print('test3')
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        print('deleted1')
+        all_id.delete()
+        print('deleted2')
+        return HttpResponse(status=204)
 
 
-def delete_atm_issue(request, pid):
-    delete_issue = ViewATMStatus.objects.get(id=pid)
-    delete_issue.delete()
-    return render(request, 'Viewe_ATM_Status.html')
+class terminalAPIClass(APIView):
 
+    def get(self, request):
+        terminal_id = AtmTerminalIdDetails.objects.all()
+        serialized = AtmTerminalIdDetailsSerializer(terminal_id, many=True)
+        return Response(serialized.data)
 
-def contact(request1):
-    submitted = False
-    if request1.method == 'POST':
-        my_form = ContactForm(request1.POST)
-        if my_form.is_valid():
-            cd = my_form.cleaned_data
-            submitted = True
-            print(cd[0])
-            # return HttpResponseRedirect('contact/?submitted=True')
-            print('test1')
-            return render(request1, 'contact.html', {'submittted': submitted})
-
-    else:
-        my_form = ContactForm()
-        return render(request1, 'contact.html', {'my_form': my_form, 'submittted': submitted})
-
-#
+    def post(self, request):
+        serialized = AtmTerminalIdDetailsSerializer(
+            data=request.data)
+        if serialized.is_valid():
+            serialized.save()
+            return Response(serialized.data, status=status.HTTP_201_CREATED)
+        return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
