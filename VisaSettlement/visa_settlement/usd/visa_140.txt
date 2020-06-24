@@ -1,0 +1,84 @@
+REPORT ID:  VSS-140                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432002 DEB 408833 INT            INTERNATIONAL SETTLEMENT SERVICE                     PROC DATE:   06APR20  
+ ROLLUP TO:          9000432017 JBBL SUMMARY                    VISA CHARGES REPORT                            REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+                                                             COUNT            INTERCHANGE         VISA CHARGES         VISA CHARGES  
+                                                                                AMOUNT              CREDITS               DEBITS     
+                                                                                                                                     
+                                                                                                                                     
+                                                   *** NO DATA FOR THIS REPORT ***                                                   
+                                                                                                                                     
+                                                                                                                                     
+                                                    *** END OF VSS-140 REPORT ***                                                    
+REPORT ID:  VSS-140                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432005 408840 INT                INTERNATIONAL SETTLEMENT SERVICE                     PROC DATE:   06APR20  
+ ROLLUP TO:          9000432011 ATM 408840 INT                  VISA CHARGES REPORT                            REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+                                                             COUNT            INTERCHANGE         VISA CHARGES         VISA CHARGES  
+                                                                                AMOUNT              CREDITS               DEBITS     
+                                                                                                                                     
+                                                                                                                                     
+                                                   *** NO DATA FOR THIS REPORT ***                                                   
+                                                                                                                                     
+                                                                                                                                     
+                                                    *** END OF VSS-140 REPORT ***                                                    
+REPORT ID:  VSS-140                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432006 408840 NW2                INTERNATIONAL SETTLEMENT SERVICE                     PROC DATE:   06APR20  
+ ROLLUP TO:          9000432011 ATM 408840 INT                  VISA CHARGES REPORT                            REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+                                                             COUNT            INTERCHANGE         VISA CHARGES         VISA CHARGES  
+                                                                                AMOUNT              CREDITS               DEBITS     
+                                                                                                                                     
+                                                                                                                                     
+                                                   *** NO DATA FOR THIS REPORT ***                                                   
+                                                                                                                                     
+                                                                                                                                     
+                                                    *** END OF VSS-140 REPORT ***                                                    
+REPORT ID:  VSS-140                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432007 408840 NW4                INTERNATIONAL SETTLEMENT SERVICE                     PROC DATE:   06APR20  
+ ROLLUP TO:          9000432011 ATM 408840 INT                  VISA CHARGES REPORT                            REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+                                                             COUNT            INTERCHANGE         VISA CHARGES         VISA CHARGES  
+                                                                                AMOUNT              CREDITS               DEBITS     
+                                                                                                                                     
+                                                                                                                                     
+                                                   *** NO DATA FOR THIS REPORT ***                                                   
+                                                                                                                                     
+                                                                                                                                     
+                                                    *** END OF VSS-140 REPORT ***                                                    
+REPORT ID:  VSS-140                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432011 ATM 408840 INT            INTERNATIONAL SETTLEMENT SERVICE                     PROC DATE:   06APR20  
+ ROLLUP TO:          9000432017 JBBL SUMMARY                    VISA CHARGES REPORT                            REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+                                                             COUNT            INTERCHANGE         VISA CHARGES         VISA CHARGES  
+                                                                                AMOUNT              CREDITS               DEBITS     
+                                                                                                                                     
+                                                                                                                                     
+                                                   *** NO DATA FOR THIS REPORT ***                                                   
+                                                                                                                                     
+                                                                                                                                     
+                                                    *** END OF VSS-140 REPORT ***                                                    
+REPORT ID:  VSS-140                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432017 JBBL SUMMARY              INTERNATIONAL SETTLEMENT SERVICE                     PROC DATE:   06APR20  
+ ROLLUP TO:          1000454555 SUNRISE DB INT                  VISA CHARGES REPORT                            REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+                                                             COUNT            INTERCHANGE         VISA CHARGES         VISA CHARGES  
+                                                                                AMOUNT              CREDITS               DEBITS     
+                                                                                                                                     
+                                                                                                                                     
+                                                   *** NO DATA FOR THIS REPORT ***                                                   
+                                                                                                                                     
+                                                                                                                                     
+                                                    *** END OF VSS-140 REPORT ***                                                    

@@ -49,8 +49,8 @@
                                 ATM Details
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Add Details</a>
-                                <a class="dropdown-item" href="#">View Details</a>
+                                <a class="dropdown-item" href="{% url 'add-atm-details'%}">Add Details</a>
+                                <a class="dropdown-item" href="{% url 'view-all-atm-details' %}">View Details</a>
                             </div>
                         </div>
                         <div class="nav-item dropdown">
@@ -59,8 +59,8 @@
                                 ATM Issue Details
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Add Issue</a>
-                                <a class="dropdown-item" href="#">View Issues</a>
+                                <a class="dropdown-item" href="{% url 'add-atm-issue-details'%}">Add Issue</a>
+                                <a class="dropdown-item" href="{% url 'view-atm-issue-details'%}">View Issues</a>
 
 
                             </div>
@@ -71,8 +71,8 @@
                                 ATM Login Details
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Add Login Details</a>
-                                <a class="dropdown-item" href="#">View Login Details</a>
+                                <a class="dropdown-item" href="{% url 'add-atm-login-credentials-details'%}">Add Login Details</a>
+                                <a class="dropdown-item" href="{% url 'view-atm-login-credentials-details'%}">View Login Details</a>
 
 
                             </div>

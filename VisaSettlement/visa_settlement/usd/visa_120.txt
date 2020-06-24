@@ -1,0 +1,147 @@
+REPORT ID:  VSS-120                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432002 DEB 408833 INT             INTERNATIONAL SETTLEMENT SERVICE                    PROC DATE:   06APR20  
+ ROLLUP TO:          9000432017 JBBL SUMMARY                   INTERCHANGE VALUE REPORT                        REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+ CLEARING CURRENCY:                                                                                                                  
+                                                                                                                                     
+                                                                                                                                     
+                                      CURRENCY               COUNT               CLEARING          INTERCHANGE          INTERCHANGE  
+                                       TABLE                                      AMOUNT              VALUE                VALUE     
+                                        DATE                                                         CREDITS               DEBITS    
+                                                                                                                                     
+                                                                                                                                     
+                                                   *** NO DATA FOR THIS REPORT ***                                                   
+                                                                                                                                     
+                                                                                                                                     
+                                                   ***  END OF VSS-120 REPORT  ***                                                   
+REPORT ID:  VSS-120                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432005 408840 INT                 INTERNATIONAL SETTLEMENT SERVICE                    PROC DATE:   06APR20  
+ ROLLUP TO:          9000432011 ATM 408840 INT                 INTERCHANGE VALUE REPORT                        REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+ CLEARING CURRENCY:                                                                                                                  
+                                                                                                                                     
+                                                                                                                                     
+                                      CURRENCY               COUNT               CLEARING          INTERCHANGE          INTERCHANGE  
+                                       TABLE                                      AMOUNT              VALUE                VALUE     
+                                        DATE                                                         CREDITS               DEBITS    
+                                                                                                                                     
+                                                                                                                                     
+                                                   *** NO DATA FOR THIS REPORT ***                                                   
+                                                                                                                                     
+                                                                                                                                     
+                                                   ***  END OF VSS-120 REPORT  ***                                                   
+REPORT ID:  VSS-120                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432006 408840 NW2                 INTERNATIONAL SETTLEMENT SERVICE                    PROC DATE:   06APR20  
+ ROLLUP TO:          9000432011 ATM 408840 INT                 INTERCHANGE VALUE REPORT                        REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+ CLEARING CURRENCY:    NPR                                                                                                           
+                                                                                                                                     
+                                                                                                                                     
+                                      CURRENCY               COUNT               CLEARING          INTERCHANGE          INTERCHANGE  
+                                       TABLE                                      AMOUNT              VALUE                VALUE     
+                                        DATE                                                         CREDITS               DEBITS    
+                                                                                                                                     
+                                                                                                                                     
+ ACQUIRER TRANSACTIONS                                                                                                               
+                                                                                                                                     
+                                                                                                                                     
+   ATM CASH                                                                                                                          
+    ORIGINAL WITHDRAWAL                06APR20                   3            61,500.00CR               507.36                       
+                                                                                                                                     
+   TOTAL ATM CASH                                                3            61,500.00CR               507.36                       
+   NET   ATM CASH                                                                                       507.36                       
+                                                                                                                                     
+                                                                                                                                     
+ TOTAL ACQUIRER INTERCHANGE                                      3            61,500.00CR               507.36                       
+ NET   ACQUIRER INTERCHANGE                                                                             507.36                       
+                                                                                                                                     
+                                                                                                                                     
+                                                   ***  END OF VSS-120 REPORT  ***                                                   
+REPORT ID:  VSS-120                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432007 408840 NW4                 INTERNATIONAL SETTLEMENT SERVICE                    PROC DATE:   06APR20  
+ ROLLUP TO:          9000432011 ATM 408840 INT                 INTERCHANGE VALUE REPORT                        REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+ CLEARING CURRENCY:                                                                                                                  
+                                                                                                                                     
+                                                                                                                                     
+                                      CURRENCY               COUNT               CLEARING          INTERCHANGE          INTERCHANGE  
+                                       TABLE                                      AMOUNT              VALUE                VALUE     
+                                        DATE                                                         CREDITS               DEBITS    
+                                                                                                                                     
+                                                                                                                                     
+                                                   *** NO DATA FOR THIS REPORT ***                                                   
+                                                                                                                                     
+                                                                                                                                     
+                                                   ***  END OF VSS-120 REPORT  ***                                                   
+REPORT ID:  VSS-120                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432011 ATM 408840 INT             INTERNATIONAL SETTLEMENT SERVICE                    PROC DATE:   06APR20  
+ ROLLUP TO:          9000432017 JBBL SUMMARY                   INTERCHANGE VALUE REPORT                        REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+ CLEARING CURRENCY:    NPR                                                                                                           
+                                                                                                                                     
+                                                                                                                                     
+                                      CURRENCY               COUNT               CLEARING          INTERCHANGE          INTERCHANGE  
+                                       TABLE                                      AMOUNT              VALUE                VALUE     
+                                        DATE                                                         CREDITS               DEBITS    
+                                                                                                                                     
+                                                                                                                                     
+ ACQUIRER TRANSACTIONS                                                                                                               
+                                                                                                                                     
+                                                                                                                                     
+   ATM CASH                                                                                                                          
+    ORIGINAL WITHDRAWAL                06APR20                   3            61,500.00CR               507.36                       
+                                                                                                                                     
+   TOTAL ATM CASH                                                3            61,500.00CR               507.36                       
+   NET   ATM CASH                                                                                       507.36                       
+                                                                                                                                     
+                                                                                                                                     
+ TOTAL ACQUIRER INTERCHANGE                                      3            61,500.00CR               507.36                       
+ NET   ACQUIRER INTERCHANGE                                                                             507.36                       
+                                                                                                                                     
+                                                                                                                                     
+                                                   ***  END OF VSS-120 REPORT  ***                                                   
+REPORT ID:  VSS-120                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432017 JBBL SUMMARY               INTERNATIONAL SETTLEMENT SERVICE                    PROC DATE:   06APR20  
+ ROLLUP TO:          1000454555 SUNRISE DB INT                 INTERCHANGE VALUE REPORT                        REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+ CLEARING CURRENCY:    NPR                                                                                                           
+                                                                                                                                     
+                                                                                                                                     
+                                      CURRENCY               COUNT               CLEARING          INTERCHANGE          INTERCHANGE  
+                                       TABLE                                      AMOUNT              VALUE                VALUE     
+                                        DATE                                                         CREDITS               DEBITS    
+                                                                                                                                     
+                                                                                                                                     
+ ACQUIRER TRANSACTIONS                                                                                                               
+                                                                                                                                     
+                                                                                                                                     
+   ATM CASH                                                                                                                          
+    ORIGINAL WITHDRAWAL                06APR20                   3            61,500.00CR               507.36                       
+                                                                                                                                     
+   TOTAL ATM CASH                                                3            61,500.00CR               507.36                       
+   NET   ATM CASH                                                                                       507.36                       
+                                                                                                                                     
+                                                                                                                                     
+ TOTAL ACQUIRER INTERCHANGE                                      3            61,500.00CR               507.36                       
+ NET   ACQUIRER INTERCHANGE                                                                             507.36                       
+                                                                                                                                     
+                                                                                                                                     
+                                                   ***  END OF VSS-120 REPORT  ***                                                   

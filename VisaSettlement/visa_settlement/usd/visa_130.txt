@@ -1,0 +1,168 @@
+REPORT ID:  VSS-130                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432002 DEB 408833 INT            INTERNATIONAL SETTLEMENT SERVICE                     PROC DATE:   06APR20  
+ ROLLUP TO:          9000432017 JBBL SUMMARY                  REIMBURSEMENT FEES REPORT                        REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+                                                                                                REIMBURSEMENT         REIMBURSEMENT  
+                                                        COUNT              INTERCHANGE               FEE                   FEE       
+                                                                              AMOUNT               CREDITS                DEBITS     
+                                                                                                                                     
+                                                                                                                                     
+                                                   *** NO DATA FOR THIS REPORT ***                                                   
+                                                                                                                                     
+                                                                                                                                     
+                                                    *** END OF VSS-130 REPORT ***                                                    
+REPORT ID:  VSS-130                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432005 408840 INT                INTERNATIONAL SETTLEMENT SERVICE                     PROC DATE:   06APR20  
+ ROLLUP TO:          9000432011 ATM 408840 INT                REIMBURSEMENT FEES REPORT                        REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+                                                                                                REIMBURSEMENT         REIMBURSEMENT  
+                                                        COUNT              INTERCHANGE               FEE                   FEE       
+                                                                              AMOUNT               CREDITS                DEBITS     
+                                                                                                                                     
+                                                                                                                                     
+                                                   *** NO DATA FOR THIS REPORT ***                                                   
+                                                                                                                                     
+                                                                                                                                     
+                                                    *** END OF VSS-130 REPORT ***                                                    
+REPORT ID:  VSS-130                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432006 408840 NW2                INTERNATIONAL SETTLEMENT SERVICE                     PROC DATE:   06APR20  
+ ROLLUP TO:          9000432011 ATM 408840 INT                REIMBURSEMENT FEES REPORT                        REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+                                                                                                REIMBURSEMENT         REIMBURSEMENT  
+                                                        COUNT              INTERCHANGE               FEE                   FEE       
+                                                                              AMOUNT               CREDITS                DEBITS     
+ ACQUIRER TRANSACTIONS                                                                                                               
+                                                                                                                                     
+    ATM CASH                                                                                                                         
+       ORIGINAL WITHDRAWAL                                                                                                           
+          VISA INTERNATIONAL                                                                                                         
+             A.P. - C.E.M.E.A                                                                                                        
+                ATM AF                                      3                 494.98CR                   0.74                        
+                                                                                                                                     
+    TOTAL ATM CASH                                          3                 494.98CR                   0.74                        
+    NET   ATM CASH                                                                                       0.74                        
+                                                                                                                                     
+    ATM BALANCE INQUIRY                                                                                                              
+          VISA INTERNATIONAL                                                                                                         
+             A.P. - C.E.M.E.A                                                                                                        
+                ATM BALANCE INQ                             1                   0.00                     0.30                        
+                                                                                                                                     
+    TOTAL ATM BALANCE INQUIRY                               1                   0.00                     0.30                        
+    NET   ATM BALANCE INQUIRY                                                                            0.30                        
+                                                                                                                                     
+    ATM DECLINE                                                                                                                      
+          VISA INTERNATIONAL                                                                                                         
+             A.P. - C.E.M.E.A                                                                                                        
+                ATM DECLINE                                 1                   0.00                     0.30                        
+                                                                                                                                     
+    TOTAL ATM DECLINE                                       1                   0.00                     0.30                        
+    NET   ATM DECLINE                                                                                    0.30                        
+                                                                                                                                     
+ TOTAL ACQUIRER REIMB FEES                                                                               1.34                        
+ NET   ACQUIRER REIMB FEES                                                                               1.34                        
+                                                                                                                                     
+                                                                                                                                     
+                                                    *** END OF VSS-130 REPORT ***                                                    
+REPORT ID:  VSS-130                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432007 408840 NW4                INTERNATIONAL SETTLEMENT SERVICE                     PROC DATE:   06APR20  
+ ROLLUP TO:          9000432011 ATM 408840 INT                REIMBURSEMENT FEES REPORT                        REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+                                                                                                REIMBURSEMENT         REIMBURSEMENT  
+                                                        COUNT              INTERCHANGE               FEE                   FEE       
+                                                                              AMOUNT               CREDITS                DEBITS     
+                                                                                                                                     
+                                                                                                                                     
+                                                   *** NO DATA FOR THIS REPORT ***                                                   
+                                                                                                                                     
+                                                                                                                                     
+                                                    *** END OF VSS-130 REPORT ***                                                    
+REPORT ID:  VSS-130                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432011 ATM 408840 INT            INTERNATIONAL SETTLEMENT SERVICE                     PROC DATE:   06APR20  
+ ROLLUP TO:          9000432017 JBBL SUMMARY                  REIMBURSEMENT FEES REPORT                        REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+                                                                                                REIMBURSEMENT         REIMBURSEMENT  
+                                                        COUNT              INTERCHANGE               FEE                   FEE       
+                                                                              AMOUNT               CREDITS                DEBITS     
+ ACQUIRER TRANSACTIONS                                                                                                               
+                                                                                                                                     
+    ATM CASH                                                                                                                         
+       ORIGINAL WITHDRAWAL                                                                                                           
+          VISA INTERNATIONAL                                                                                                         
+             A.P. - C.E.M.E.A                                                                                                        
+                ATM AF                                      3                 494.98CR                   0.74                        
+                                                                                                                                     
+    TOTAL ATM CASH                                          3                 494.98CR                   0.74                        
+    NET   ATM CASH                                                                                       0.74                        
+                                                                                                                                     
+    ATM BALANCE INQUIRY                                                                                                              
+          VISA INTERNATIONAL                                                                                                         
+             A.P. - C.E.M.E.A                                                                                                        
+                ATM BALANCE INQ                             1                   0.00                     0.30                        
+                                                                                                                                     
+    TOTAL ATM BALANCE INQUIRY                               1                   0.00                     0.30                        
+    NET   ATM BALANCE INQUIRY                                                                            0.30                        
+                                                                                                                                     
+    ATM DECLINE                                                                                                                      
+          VISA INTERNATIONAL                                                                                                         
+             A.P. - C.E.M.E.A                                                                                                        
+                ATM DECLINE                                 1                   0.00                     0.30                        
+                                                                                                                                     
+    TOTAL ATM DECLINE                                       1                   0.00                     0.30                        
+    NET   ATM DECLINE                                                                                    0.30                        
+                                                                                                                                     
+ TOTAL ACQUIRER REIMB FEES                                                                               1.34                        
+ NET   ACQUIRER REIMB FEES                                                                               1.34                        
+                                                                                                                                     
+                                                                                                                                     
+                                                    *** END OF VSS-130 REPORT ***                                                    
+REPORT ID:  VSS-130                                         VISANET SETTLEMENT SERVICE                        PAGE:              1  
+ REPORTING FOR:      9000432017 JBBL SUMMARY              INTERNATIONAL SETTLEMENT SERVICE                     PROC DATE:   06APR20  
+ ROLLUP TO:          1000454555 SUNRISE DB INT                REIMBURSEMENT FEES REPORT                        REPORT DATE: 06APR20  
+ FUNDS XFER ENTITY:  1000454555 SUNRISE DB INT                                                                                       
+                                                                                                                                     
+ SETTLEMENT CURRENCY:  USD                                                                                                           
+                                                                                                REIMBURSEMENT         REIMBURSEMENT  
+                                                        COUNT              INTERCHANGE               FEE                   FEE       
+                                                                              AMOUNT               CREDITS                DEBITS     
+ ACQUIRER TRANSACTIONS                                                                                                               
+                                                                                                                                     
+    ATM CASH                                                                                                                         
+       ORIGINAL WITHDRAWAL                                                                                                           
+          VISA INTERNATIONAL                                                                                                         
+             A.P. - C.E.M.E.A                                                                                                        
+                ATM AF                                      3                 494.98CR                   0.74                        
+                                                                                                                                     
+    TOTAL ATM CASH                                          3                 494.98CR                   0.74                        
+    NET   ATM CASH                                                                                       0.74                        
+                                                                                                                                     
+    ATM BALANCE INQUIRY                                                                                                              
+          VISA INTERNATIONAL                                                                                                         
+             A.P. - C.E.M.E.A                                                                                                        
+                ATM BALANCE INQ                             1                   0.00                     0.30                        
+                                                                                                                                     
+    TOTAL ATM BALANCE INQUIRY                               1                   0.00                     0.30                        
+    NET   ATM BALANCE INQUIRY                                                                            0.30                        
+                                                                                                                                     
+    ATM DECLINE                                                                                                                      
+          VISA INTERNATIONAL                                                                                                         
+             A.P. - C.E.M.E.A                                                                                                        
+                ATM DECLINE                                 1                   0.00                     0.30                        
+                                                                                                                                     
+    TOTAL ATM DECLINE                                       1                   0.00                     0.30                        
+    NET   ATM DECLINE                                                                                    0.30                        
+                                                                                                                                     
+ TOTAL ACQUIRER REIMB FEES                                                                               1.34                        
+ NET   ACQUIRER REIMB FEES                                                                               1.34                        
+                                                                                                                                     
+                                                                                                                                     
+                                                    *** END OF VSS-130 REPORT ***                                                    

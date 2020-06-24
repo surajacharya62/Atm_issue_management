@@ -14,6 +14,8 @@ class ATMLoginCredentialsDetailsForm(forms.ModelForm):
     ATM_IP = forms.ChoiceField(required=True, choices=[(
         None, 'Please select ATM IP')]+ATM_IP_choices)
 
+   
+
     class Meta:
         model = ATMLoginCredentialsDetails
         fields = [

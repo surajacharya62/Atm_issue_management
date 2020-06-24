@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .UserForm import UserUpdateForm, ProfileUpdateForm, UserRegistrationForm
+from users.login_form import LoginForm
 
 
 @login_required
@@ -42,3 +43,27 @@ def profile(request):
         'profile_form': profile_form
     }
     return render(request, 'profile.html', context)
+
+def user_login(request):
+
+    form = LoginForm()   
+    # request.session['username'] = 'not logged in'
+    # print(request.session['username'])
+    print(request.user)
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        username = request.user
+        request.session['username'] = request.user
+        if form.is_valid():
+            request.session.set_expiry(60)
+            return render(request,'logged_in.html',{'formuser':username})
+
+    return render(request,'UserLogin.html',{'form':form})
+
+def connection(request):
+    form = LoginForm()
+    if request.session.has_key('username'):
+        username = request.session['username']
+        return render(request,'logged_in.html',{'formuser':username}) 
+        
+    return render(request,'UserLogin.html',{'form':form})

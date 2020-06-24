@@ -9,6 +9,13 @@
 {% endfor %}
 {% endif %}
 <div class="content-section">
+    <div class="form-group" style="float:right;">
+        <form method="post" action="">
+            {% csrf_token %}
+            <input type="text" id="search_text" class="form-control" name="search_text"/>
+            <button id="btn_search_value" type="submit" class="btn btn-secondary mt-2" style="float:right;">Search</button>
+        </form>
+     </div>
     <table class="table table-bordered text-center">
         <thead class="thead-dark">
             <th colspan="12">ATM Terminal Details </th>
@@ -16,15 +23,15 @@
         <tbody>
             <tr>
                 <th scope="col">S.N</th>
-                <th scope="col" colspan="2">ATM Terminal ID</th>
+                <th scope="col" colspan="">ATM Terminal ID</th>
 
             </tr>
-
+           
             {% for all_atm in all_atm_terminal_id %}
             <tr>
                 <td>{{all_atm.s_n}}</td>
-                <td class="editable" data-id="{{all_atm.id}}" data-type="{{all_atm.atm_terminal_id}}">
-                    {{all_atm.atm_terminal_id}}
+                <td>
+                    {{all_atm.terminal_id}}
                 </td>
                 <td class="text-dark">
                     <a href="{% url 'ATMStatus_modify_terminal_id' all_atm.id %}"><button type="button"

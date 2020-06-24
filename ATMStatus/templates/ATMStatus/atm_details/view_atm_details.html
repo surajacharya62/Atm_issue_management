@@ -1,0 +1,87 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{message.tags}}">
+    {{message}}
+</div>
+{% endfor %}
+{% endif %}
+<div class="content-section">
+  <div class="form-group" style="float:right;">
+    <form method="post" action="">
+        {% csrf_token %}
+        <input type="number" id="search_text" class="form-control" name="search_text"/>
+        <button id="btn_search_value" type="submit" class="btn btn-secondary mt-2" style="float:right;">Search</button>
+    </form>
+ </div>
+  <div class="table-responsive1">
+    <table class="table table-bordered text-center">
+      <thead class="thead-dark">
+        <th colspan="11">ATM Details</th>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="col">S.N</th>
+          <th scope="col">Branch Name</th>
+          <th scope="col">Branch Code</th>
+          <th scope="col">ATM Terminal Id</th>
+          <th scope="col">ATM Location</th>
+          <th scope="col">ATM Address</th>
+          <th scope="col">ATM Ip Address</th>
+          <th scope="col">Swith Ip Address</th>
+          <th scope="col">Switch Port Number</th>
+          <th scope="col" colspan="2">ATM Installed Date</th>
+        </tr>
+
+        {% for all_atm in all_atm_details %}
+        <tr>
+          <td>{{all_atm.s_n}}</td>
+          <td class="">
+            {{all_atm.branch_name}}
+          </td>
+
+          <td class="">
+            {{all_atm.branch_code}}
+          </td>
+          <td class="">
+            {{all_atm.terminal_id}}
+          </td>
+          <td class="">
+            {{all_atm.atm_location}}
+          </td>
+          <td class="">
+            {{all_atm.atm_address}}
+          </td>
+          <td class="">
+            {{all_atm.atm_ip_address}}
+          </td>
+          <td class="">
+            {{all_atm.switch_ip_address}}
+          </td>
+          <td class="">
+            {{all_atm.switch_port_number}}
+          </td>
+          <td class="">
+            {{all_atm.atm_installed_date}}
+          </td>
+          <td class="text-dark">
+            <a href="{% url 'modify-atm-details' all_atm.id %}">
+              <img src="{% static 'img/pencil-2x.png'%}" class=""
+            /></a>
+
+            <a href="{% url 'delete-atm-details' all_atm.id %}"
+              ><img src="{% static 'img/delete-2x.png'%}" class="mt-4"
+            /></a>
+          </td>
+        </tr>
+
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+
