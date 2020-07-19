@@ -1,75 +1,80 @@
-{% extends 'base.html'%} {% load static %} {% block content %} {% if messages %}
-{% for message in messages %}
-<div class="alert alert-{{message.tags}}">
-  {{message}}
-</div>
-{% endfor %} {% endif %}
-<div class="content-section">
-  <div class="form-group" style="float:right;">
-    <form method="post" action="">
-        {% csrf_token %}
-        <input type="number" id="search_text" class="form-control" name="search_text"/>
-        <button id="btn_search_value" type="submit" class="btn btn-secondary mt-2" style="float:right;">Search</button>
-    </form>
- </div>
+{% extends 'base.html'%} {% load static %} {% block content %}
+<div class="col-12">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+      {{message}}
+    </div>
+    {% endfor %} {% endif %}
+    <div class="content-section">
+      <div class="form-group" style="float:right;">
+        <form method="post" action="">
+            {% csrf_token %}
+            <input type="number" id="search_text" class="form-control" name="search_text"/>
+            <button id="btn_search_value" type="submit" class="btn btn-secondary mt-2" style="float:right;">Search</button>
+        </form>
+    </div>
 
-  <div class="table-responsive">
-    <table class="table table-bordered text-center">
-      <thead class="thead-dark">
-        <th colspan="11">ATM Details</th>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="col">S.N</th>
-          <th scope="col">Branch Name</th>
-          <th scope="col">Branch Code</th>
-          <th scope="col">ATM Terminal Id</th>
-          <th scope="col">Problem</th>
-          <th scope="col">Remarks</th>
-          <th scope="col">ATM Issue Priority</th>
-        </tr>
+      <div class="table-responsive">
+        <table class="table table-bordered text-center">
+          <thead class="thead-dark">
+            <th colspan="11">ATM Issue Details</th>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="col">Issue no</th>
+              <th scope="col">Branch Name</th>
+              <th scope="col">Branch Code</th>
+              <th scope="col">ATM Terminal Id</th>
+              <th scope="col">Problem</th>
+              <th scope="col">Remarks</th>
+              <th scope="col">ATM Issue Priority</th>
+              <th scope="col" colspan="">Issued Date</th>
+            </tr>
 
-        {% for all_atm in all_atm_issue_details %}
-        <tr>
-          <td>{{all_atm.s_n}}</td>
-          <td class="">
-            {{all_atm.branch_name}}
-          </td>
+            {% for all_atm in all_atm_issue_details %}
+            <tr>
+              <td>{{all_atm.issue_no}}</td>
+              <td class="">
+                {{all_atm.branch_name}}
+              </td>
 
-          <td class="">
-            {{all_atm.branch_code}}
-          </td>
-          <td class="">
-            {{all_atm.terminal_id}}
-          </td>
-          <td class="">
-            {{all_atm.problem}}
-          </td>
-          <td class="">
-            {{all_atm.remarks}}
-          </td>
-          <td class="">
-            {{all_atm.atm_issue_priority}}
-          </td>
-          <td class="">
-            {{all_atm.issued_date}}
-          </td>
-          <td class="text-dark">
-            <a href="{% url 'modify-atm-issue-details' all_atm.id %}">
-              <img src="{% static 'img/pencil-2x.png'%}" class=""
-            /></a>
+              <td class="">
+                {{all_atm.branch_code}}
+              </td>
+              <td class="">
+                {{all_atm.terminal_id}}
+              </td>
+              <td class="">
+                {{all_atm.problem}}
+              </td>
+              <td class="">
+                {{all_atm.remarks}}
+              </td>
+              <td class="">
+                {{all_atm.atm_issue_priority}}
+              </td>
+              <td class="">
+                {{all_atm.issued_date}}
+              </td>
+              <td class="text-dark">
+                <a href="{% url 'view-sub-atm-issue-details' all_atm.id %}">
+                  {% comment %} <img src="{% static 'img/pencil-2x.png'%}" class="" {% endcomment %}
+                  <button type="button"  class="btn btn-info">View Issue</button>
+                </a>
 
-            <a href="{% url 'delete-atm-issue-details' all_atm.id %}"
-              ><img src="{% static 'img/delete-2x.png'%}" class=""
-            /></a>
-          </td>
-        </tr>
+                {% comment %} <a href="{% url 'delete-atm-issue-details' all_atm.id %}"
+                  ><img src="{% static 'img/delete-2x.png'%}" class=""
+                /></a> {% endcomment %}
+              </td>
+            </tr>
 
-        {% endfor %}
-      </tbody>
-    </table>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-</div>
 
 
 {% endblock content %}

@@ -1,73 +1,75 @@
 {% extends 'base.html'%}
 {% block content %}
 {% load static %}
-{% if messages %}
-{% for message in messages %}
-<div class="alert alert-{{message.tags}}">
-    {{message}}
-</div>
-{% endfor %}
-{% endif %}
-<div class="content-section">
-    <div class="form-group">
-        <input type="text">
-       <button>button</button>
+<div class="col-12">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
     </div>
-    <table class="table table-bordered text-center">
-        <thead class="thead-dark">
-            <th colspan="4">Branch Details </th>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="col">S.N</th>
-                <th scope="col">Branch Name</th>
-                <th scope="col" colspan="">Branch Code</th>
+    {% endfor %}
+    {% endif %}
+    <div class="content-section">
+        <div class="form-group">
+            <input type="text">
+        <button>button</button>
+        </div>
+        <table class="table table-bordered text-center">
+            <thead class="thead-dark">
+                <th colspan="4">Branch Details </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="col">S.N</th>
+                    <th scope="col">Branch Name</th>
+                    <th scope="col" colspan="">Branch Code</th>
 
-            </tr>
+                </tr>
 
-            {% for all_branch in branch_details %}
-            <tr>
-                <td>{{all_branch.s_n}}</td>
-                <td>{{all_branch.branch_name}}</td>
-                <td >
-                    {{all_branch.branch_code}}
-                </td>
-                <td class="text-dark">
-                    <a href="{% url 'modify-branch-details' all_branch.id %}"><button type="button"
-                            class="btn btn-info"><img src="{% static 'img/pencil-2x.png'%}"
-                                class="mr-1">Edit</button></a>
+                {% for all_branch in branch_details %}
+                <tr>
+                    <td>{{all_branch.s_n}}</td>
+                    <td>{{all_branch.branch_name}}</td>
+                    <td >
+                        {{all_branch.branch_code}}
+                    </td>
+                    <td class="text-dark">
+                        <a href="{% url 'modify-branch-details' all_branch.id %}"><button type="button"
+                                class="btn btn-info"><img src="{% static 'img/pencil-2x.png'%}"
+                                    class="mr-1">Edit</button></a>
 
-                    <a href="{% url 'delete-branch-details' all_branch.id %}"><button type="button"
-                            class="btn btn-info"><img src="{% static 'img/delete-2x.png'%}"
-                                class="mr-1">Delete</button></a>
+                        <a href="{% url 'delete-branch-details' all_branch.id %}"><button type="button"
+                                class="btn btn-info"><img src="{% static 'img/delete-2x.png'%}"
+                                    class="mr-1">Delete</button></a>
 
 
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
+    {% if is_paginated %}
 
-{% if is_paginated %}
+    {% if page_obj.has_previous%}
+    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif%}
 
-{% if page_obj.has_previous%}
-<a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-{% endif%}
+    {% for num in page_obj.paginator.page_range %}
+    {% if page_obj.number == num %}
+    <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3'%}
+    <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% endif %}
+    {% endfor %}
 
-{% for num in page_obj.paginator.page_range %}
-{% if page_obj.number == num %}
-<a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3'%}
-<a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
-{% endif %}
-{% endfor %}
+    {% if page_obj.has_next%}
+    <a class="btn btn-outline-info mb-4" href="?page={{page_obj.next_page_number}}">Next</a>
+    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+    {% endif%}
 
-{% if page_obj.has_next%}
-<a class="btn btn-outline-info mb-4" href="?page={{page_obj.next_page_number}}">Next</a>
-<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-{% endif%}
+    {%endif%}
 
-{%endif%}
 {% endblock content %}

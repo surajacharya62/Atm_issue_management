@@ -4,7 +4,7 @@ from ATMStatus import views
 from django.contrib.auth.views import LoginView
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import  AtmLoginCredentialsDetailsListView, terminalAPIClass
+from .views import terminalAPIClass
 
 
 urlpatterns = [
@@ -36,21 +36,23 @@ urlpatterns = [
          name="delete-atm-issue-details"),
     path('viewallatmissuedetails/', views.view_atm_issue_details,
          name="view-atm-issue-details"),
-    path('viewalllogincredentialsdetails/', AtmLoginCredentialsDetailsListView.as_view(),
+    path('viewsubatmissuedetails/(<pid>\d+)', views.view_sub_atm_issue_details,
+         name="view-sub-atm-issue-details"),
+    path('viewalllogincredentialsdetails/', views.veiw_login_credentials_details,
          name='view-atm-login-credentials-details'),
     path('addatmlogincredentialsdetails/', views.add_atm_login_credentials_details,
          name='add-atm-login-credentials-details'),
-    path('modifyatmlogincredentialsdetails/<int:pid>/', views.modify_atm_login_credentials_details,
+    path(r'modifyatmlogincredentialsdetails/(<pid>\d+)', views.modify_atm_login_credentials_details,
          name='modify-atm-login-credentials-details'),
     path('deleteatmlogincredentialsdetails/<int:pid>/', views.delete_atm_login_details,
          name='delete-atm-login-credentials-details'),
-    path('viewallbranchdetails/',views.view_branch_details ,
+    path('viewallbranchdetails/', views.view_branch_details,
          name='view-all-branch-details'),
-    path('addbranchdetails/',views.add_branch_details,
+    path('addbranchdetails/', views.add_branch_details,
          name='add-branch-details'),
-    path('modifybranchdetails/<int:pid>',views.modify_branch_details,
+    path('modifybranchdetails/<int:pid>', views.modify_branch_details,
          name='modify-branch-details'),
-    path('deletebranchdetails/<int:pid>',views.delete_branch_details,
+    path('deletebranchdetails/<int:pid>', views.delete_branch_details,
          name='delete-branch-details'),
     path('exporttoexcel/', views.export_to_excel, name='export-excel')
 

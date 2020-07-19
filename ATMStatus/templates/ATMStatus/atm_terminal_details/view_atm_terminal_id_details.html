@@ -1,58 +1,61 @@
+
 {% extends 'base.html'%}
 {% block content %}
 {% load static %}
-{% if messages %}
-{% for message in messages %}
-<div class="alert alert-{{message.tags}}">
-    {{message}}
-</div>
-{% endfor %}
-{% endif %}
-<div class="content-section">
-    <div class="form-group" style="float:right;">
-        <form method="post" action="">
-            {% csrf_token %}
-            <input type="text" id="search_text" class="form-control" name="search_text"/>
-            <button id="btn_search_value" type="submit" class="btn btn-secondary mt-2" style="float:right;">Search</button>
-        </form>
-     </div>
-    <table class="table table-bordered text-center">
-        <thead class="thead-dark">
-            <th colspan="12">ATM Terminal Details </th>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="col">S.N</th>
-                <th scope="col" colspan="">ATM Terminal ID</th>
+<div class="col-12">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+        {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="content-section">
+        <div class="form-group" style="float:right;">
+            <form method="post" action="">
+                {% csrf_token %}
+                <input type="text" id="search_text" class="form-control" name="search_text"/>
+                <button id="btn_search_value" type="submit" class="btn btn-secondary mt-2" style="float:right;">Search</button>
+            </form>
+        </div>
+        <table class="table table-bordered text-center">
+            <thead class="thead-dark">
+                <th colspan="12">ATM Terminal Details </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="col">S.N</th>
+                    <th scope="col" colspan="">ATM Terminal ID</th>
 
-            </tr>
-           
-            {% for all_atm in all_atm_terminal_id %}
-            <tr>
-                <td>{{all_atm.s_n}}</td>
-                <td>
-                    {{all_atm.terminal_id}}
-                </td>
-                <td class="text-dark">
-                    <a href="{% url 'ATMStatus_modify_terminal_id' all_atm.id %}"><button type="button"
-                            class="btn btn-info"><img src="{% static 'img/pencil-2x.png'%}"
-                                class="mr-1">Edit</button></a>
+                </tr>
+            
+                {% for all_atm in all_atm_terminal_id %}
+                <tr>
+                    <td>{{all_atm.s_n}}</td>
+                    <td>
+                        {{all_atm.terminal_id}}
+                    </td>
+                    <td class="text-dark">
+                        <a href="{% url 'ATMStatus_modify_terminal_id' all_atm.id %}"><button type="button"
+                                class="btn btn-info"><img src="{% static 'img/pencil-2x.png'%}"
+                                    class="mr-1">Edit</button></a>
 
-                    <a href="{% url 'ATMStatus_delete_terminal_id' all_atm.id %}"><button type="button"
-                            class="btn btn-info"><img src="{% static 'img/delete-2x.png'%}"
-                                class="mr-1">Delete</button></a>
-
-
-                </td>
+                        <a href="{% url 'ATMStatus_delete_terminal_id' all_atm.id %}"><button type="button"
+                                class="btn btn-info"><img src="{% static 'img/delete-2x.png'%}"
+                                    class="mr-1">Delete</button></a>
 
 
+                    </td>
 
 
-            </tr>
 
-            {% endfor %}
-        </tbody>
-    </table>
+
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 {% endblock %}

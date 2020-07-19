@@ -44,9 +44,10 @@ def profile(request):
     }
     return render(request, 'profile.html', context)
 
+
 def user_login(request):
 
-    form = LoginForm()   
+    form = LoginForm()
     # request.session['username'] = 'not logged in'
     # print(request.session['username'])
     print(request.user)
@@ -56,14 +57,15 @@ def user_login(request):
         request.session['username'] = request.user
         if form.is_valid():
             request.session.set_expiry(60)
-            return render(request,'logged_in.html',{'formuser':username})
+            # return render(request,'logged_in.html',{'formuser':username})
 
-    return render(request,'UserLogin.html',{'form':form})
+    return render(request, 'user_login.html', {'form': form})
+
 
 def connection(request):
     form = LoginForm()
     if request.session.has_key('username'):
         username = request.session['username']
-        return render(request,'logged_in.html',{'formuser':username}) 
-        
-    return render(request,'UserLogin.html',{'form':form})
+        return render(request, 'logged_in.html', {'formuser': username})
+
+    return render(request, 'UserLogin.html', {'form': form})

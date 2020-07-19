@@ -1,0 +1,117 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'test.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/gijgo.min.css'%}">
+    <title>ATM Issue Management System</title>
+    <style stylesheet = "text/css">
+        .first-banner{
+            height:100px;
+            width:730px;
+            background-color:#5d75a1;
+            text-align:center;  
+            
+                   
+            
+        }
+        .p-text{
+            font-size:30px;
+            font-style:normal;
+            color:#3683f7;
+            
+
+        }
+        h4{
+            color:#6c92cc;
+        }
+        .logo-img{
+            height:100px;
+            weight:100px;
+            float:left;
+        }
+        .pariwartan-img{
+           width:1000px;
+           height:100px;
+        }
+    </style>
+</head>
+
+<body style="background-color:#e6ebf0;">
+
+    <header class="">      
+    
+    </header>
+
+    <div class="container">
+       {% comment %} <img src="static/img/pariwartan.jpg" class="pariwartan-img"> {% endcomment %}
+        <div class="row">
+            
+            {% load crispy_forms_tags %}
+           
+            <div class='col-2'></div>
+                <div class='col-8'>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{message.tags}}">
+                                {{message}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                     <div class="first-banner">
+                        <img src="{% static 'img/logo.jpg'%}" class="logo-img">
+                        <p class="p-text">
+                            Welcome to the Jyoti Bikash Bank Limited <br/>
+                                                      
+                        </P>
+                        <h4 class="">
+                            ATM details Management System 
+                        </h3>
+                        
+                    </div>
+                    <div class='content-section' style="background-color:#e6eefa;">
+                        <form method='POST'>
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                <legend class="border-bottom mb-4">Log In</legend>
+                                {{form|crispy}}
+                            </fieldset>
+                            <div class="form-group">
+                                <button class="btn btn-outline-info" type="submit">Login</button>
+                            </div>
+                        </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    
+    </div>
+</body>
+
+</html>
